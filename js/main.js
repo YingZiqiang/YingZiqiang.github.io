@@ -241,7 +241,11 @@
         },
         reward: function () {
             var modal = new this.modal('#reward');
-            $('#rewardBtn').addEventListener(even, modal.toggle);
+            // $('#rewardBtn').addEventListener(even, modal.toggle);
+            $('#rewardBtn').addEventListener(even, function(){
+                mask.parentNode.appendChild($('#reward'));
+                modal.toggle();
+            });
 
             var $rewardToggle = $('#rewardToggle');
             var $rewardCode = $('#rewardCode');
