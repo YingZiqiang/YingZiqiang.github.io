@@ -278,10 +278,10 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
     var OriginTitile = document.title, titleTime;
     document.addEventListener('visibilitychange', function() {
         if (document.hidden) {
-            document.title = '快回来学习啦!';
+            document.title = '快回来练习bug!';
             clearTimeout(titleTime);
         } else {
-            document.title = '一只NLP程序员的点滴';
+            document.title = 'yingzq's Blog';
             titleTime = setTimeout(function() {
                 document.title = OriginTitile;
             },2000);
