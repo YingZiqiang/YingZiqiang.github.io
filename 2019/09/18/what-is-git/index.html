@@ -21,13 +21,13 @@
     
     
     <meta name="keywords" content="Git">
-    <meta name="description" content="相信写过代码的程序猿们都听说过Git的大名，哪怕是刚刚入门的小白，也在GitHub等代码托管网站git clone过他人的代码。那么什么是Git呢？本文将为你讲述Git的前世往生。">
+    <meta name="description" content="相信写过代码的程序猿们都听说过Git的大名，哪怕是刚刚入门的小白，也在GitHub等代码托管网站git clone过他人的代码。那么什么是Git呢？本文将为你讲述Git的前世往生，看完本文，你应该会对版本控制、Git的诞生、Git基本概念和Git的特性有了一个初步的认识。">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="What is Git">
 <meta property="og:url" content="http://www.yingzq.com/2019/09/18/what-is-git/index.html">
 <meta property="og:site_name" content="yingzq&#39;s Blog">
-<meta property="og:description" content="相信写过代码的程序猿们都听说过Git的大名，哪怕是刚刚入门的小白，也在GitHub等代码托管网站git clone过他人的代码。那么什么是Git呢？本文将为你讲述Git的前世往生。">
+<meta property="og:description" content="相信写过代码的程序猿们都听说过Git的大名，哪怕是刚刚入门的小白，也在GitHub等代码托管网站git clone过他人的代码。那么什么是Git呢？本文将为你讲述Git的前世往生，看完本文，你应该会对版本控制、Git的诞生、Git基本概念和Git的特性有了一个初步的认识。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://image.yingzq.com/img/20190919170521.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20190919215217.png">
@@ -35,10 +35,10 @@
 <meta property="og:image" content="http://image.yingzq.com/img/20190921191553.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20190921212012.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20190921212823.png">
-<meta property="og:updated_time" content="2019-09-21T15:49:39.825Z">
+<meta property="og:updated_time" content="2019-09-22T14:56:03.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="What is Git">
-<meta name="twitter:description" content="相信写过代码的程序猿们都听说过Git的大名，哪怕是刚刚入门的小白，也在GitHub等代码托管网站git clone过他人的代码。那么什么是Git呢？本文将为你讲述Git的前世往生。">
+<meta name="twitter:description" content="相信写过代码的程序猿们都听说过Git的大名，哪怕是刚刚入门的小白，也在GitHub等代码托管网站git clone过他人的代码。那么什么是Git呢？本文将为你讲述Git的前世往生，看完本文，你应该会对版本控制、Git的诞生、Git基本概念和Git的特性有了一个初步的认识。">
 <meta name="twitter:image" content="http://image.yingzq.com/img/20190919170521.png">
     
         <link rel="alternate" type="application/atom+xml" title="yingzq&#39;s Blog" href="/atom.xml">
@@ -82,9 +82,9 @@
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签云
               </a>
             </li>
         
@@ -96,9 +96,9 @@
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签云
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于
               </a>
             </li>
         
@@ -185,7 +185,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>相信写过代码的程序猿们都听说过Git的大名，哪怕是刚刚入门的小白，也在GitHub等代码托管网站<code>git clone</code>过他人的代码。那么什么是Git呢？本文将为你讲述Git的前世往生。</p>
+            <p>相信写过代码的程序猿们都听说过Git的大名，哪怕是刚刚入门的小白，也在GitHub等代码托管网站<code>git clone</code>过他人的代码。那么什么是Git呢？本文将为你讲述Git的前世往生，看完本文，你应该会对版本控制、Git的诞生、Git基本概念和Git的特性有了一个初步的认识。</p>
 <a id="more"></a>
 
 <blockquote>
@@ -231,7 +231,6 @@
 <p>图4：Linus Torvalds</p>
 </div>
 
-
 <p>Linus虽然创建了Linux，但Linux的壮大是靠全世界热心的志愿者参与的，这么多人在世界各地为Linux编写代码，那Linux的代码是如何管理的呢？事实是，在2002年以前，世界各地的志愿者把源代码文件通过diff的方式发给Linus，然后由Linus本人通过手工方式合并代码！</p>
 <p>你也许会想，为什么Linus不把Linux代码放到版本控制系统里呢？不是有CVS、SVN这些免费的版本控制系统吗？因为Linus坚定地反对CVS和SVN，这些集中式的版本控制系统不但速度慢，而且必须联网才能使用。有一些商用的版本控制系统，虽然比CVS、SVN好用，但那是付费的，和Linux的开源精神不符。</p>
 <p>不过，到了2002年，Linux系统已经发展了十年了，代码库之大让Linus很难继续通过手工方式管理了，社区的弟兄们也对这种方式表达了强烈不满，于是Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统。</p>
@@ -263,9 +262,7 @@
 <p>这也意味着你离线或者没有VPN时，几乎可以进行任何操作。如你在飞机或火车上想做些工作，你能愉快地提交，直到有网络连接时再上传。如你回家后VPN客户端不正常，你仍能工作。使用其它系统，做到如此是不可能或很费力的。比如，用Perforce，你没有连接服务器时几乎不能做什么事；用Subversion和CVS，你能修改文件，但不能向数据库提交修改（因为你的本地数据库离线了）。这看起来不是大问题，但是你可能会惊喜地发现它带来的巨大的不同。</p>
 <h3 id="Git保证完整性"><a href="#Git保证完整性" class="headerlink" title="Git保证完整性"></a>Git保证完整性</h3><p>Git中所有数据在存储前都计算校验和，然后以校验和来引用。这意味着不可能在Git不知情时更改任何文件内容或目录内容。这个功能建构在Git底层，是构成Git哲学不可或缺的部分。若你在传送过程中丢失信息或损坏文件，Git就能发现。</p>
 <p>Git用以计算校验和的机制叫做<code>SHA-1</code>散列。这是一个由40个十六进制字符（0-9和a-f）组成的字符串，基于Git中文件的内容或目录结构计算出来。SHA-1哈希看起来是这样：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">24b9da6552252987aa493b52f8696cd6d3b00373</span><br></pre></td></tr></table></figure>
-
-<h3 id="Git一般只添加数据"><a href="#Git一般只添加数据" class="headerlink" title="Git一般只添加数据"></a>Git一般只添加数据</h3><p>你执行的Git操作，几乎只往Git数据库中增加数据。很难让Git执行任何不可逆操作，或者让它以任何方式清除数据。同别的VCS一样，未提交更新时有可能丢失或弄乱修改的内容；但是一旦你提交快照到Git中，就难以再丢失数据，特别是如果你定期的推送数据库到其它仓库的话。</p>
+<pre><code>24b9da6552252987aa493b52f8696cd6d3b00373</code></pre><h3 id="Git一般只添加数据"><a href="#Git一般只添加数据" class="headerlink" title="Git一般只添加数据"></a>Git一般只添加数据</h3><p>你执行的Git操作，几乎只往Git数据库中增加数据。很难让Git执行任何不可逆操作，或者让它以任何方式清除数据。同别的VCS一样，未提交更新时有可能丢失或弄乱修改的内容；但是一旦你提交快照到Git中，就难以再丢失数据，特别是如果你定期的推送数据库到其它仓库的话。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>你应该已经对Git是什么、Git与你可能正在使用的集中式版本控制系统有何区别等问题有了基本的了解。对于Git的特性，本文也只是简单提及，它的分支管理、代码合并等功能更让人欲罢不能。如今Git已经成为了最流行的开源分布式版本控制系统，它值得你去深入探索研究!</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">Pro Git Book</a></li>
@@ -279,7 +276,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-09-21T15:49:39.825Z" itemprop="dateUpdated">2019-09-21 23:49:39</time>
+    最后更新时间：<time datetime="2019-09-22T14:56:03.082Z" itemprop="dateUpdated">2019-09-22 22:56:03</time>
 </span><br>
 
 
@@ -360,6 +357,19 @@
     </div>
 
     
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/09/22/the-annotated-transformer/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">The Annotated Transformer</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
 
 
     
