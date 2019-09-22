@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>一只NLP程序猿的点滴</title>
+  <title>yingzq&#39;s Blog</title>
   
-  <subtitle>生命太短暂，不要去做一些根本没有人想要的东西</subtitle>
+  <subtitle>练习bug时长两年半的实习生</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://www.yingzq.com/"/>
   <updated>2019-09-21T15:49:39.825Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://www.yingzq.com/</id>
   
   <author>
-    <name>yingzq</name>
+    <name>应子强</name>
     
   </author>
   
@@ -18,8 +18,8 @@
   
   <entry>
     <title>What is Git</title>
-    <link href="http://yoursite.com/2019/09/18/what-is-git/"/>
-    <id>http://yoursite.com/2019/09/18/what-is-git/</id>
+    <link href="http://www.yingzq.com/2019/09/18/what-is-git/"/>
+    <id>http://www.yingzq.com/2019/09/18/what-is-git/</id>
     <published>2019-09-18T14:19:30.000Z</published>
     <updated>2019-09-21T15:49:39.825Z</updated>
     
@@ -33,7 +33,7 @@
     
     
     
-      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+      <category term="Git" scheme="http://www.yingzq.com/tags/Git/"/>
     
   </entry>
   
