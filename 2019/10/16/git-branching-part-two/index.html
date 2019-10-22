@@ -47,7 +47,7 @@
 <meta property="og:image" content="http://image.yingzq.com/img/20191022165050.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20191022170242.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20191022170702.png">
-<meta property="og:updated_time" content="2019-10-22T09:25:03.615Z">
+<meta property="og:updated_time" content="2019-10-22T15:50:39.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git的杀手锏：分支模型（下）">
 <meta name="twitter:description" content="在 Git的杀手锏：分支模型（上）中，我们已经初步了解了Git分支的基本原理和优良特征，同时也学会了Git分支新建和合并的基本操作。在本章我们继续来学习Git分支的工作流、远程分支和变基等内容。">
@@ -177,7 +177,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Git分支开发工作流"><span class="post-toc-number">1.</span> <span class="post-toc-text">Git分支开发工作流</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#长期分支"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">长期分支</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性分支"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">特性分支</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Git远程分支"><span class="post-toc-number">2.</span> <span class="post-toc-text">Git远程分支</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#推送"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">推送</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#跟踪分支"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">跟踪分支</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#拉取"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">拉取</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#删除远程分支"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">删除远程分支</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变基"><span class="post-toc-number">3.</span> <span class="post-toc-text">变基</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变基的基本操作"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">变基的基本操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#更有趣的变基例子"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">更有趣的变基例子</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变基的风险"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">变基的风险</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变基-vs-合并"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">变基 vs. 合并</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">4.</span> <span class="post-toc-text">总结</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Git分支开发工作流"><span class="post-toc-number">1.</span> <span class="post-toc-text">Git分支开发工作流</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#长期分支"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">长期分支</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#特性分支"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">特性分支</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Git远程分支"><span class="post-toc-number">2.</span> <span class="post-toc-text">Git远程分支</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#推送"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">推送</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#跟踪分支"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">跟踪分支</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#拉取"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">拉取</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#删除远程分支"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">删除远程分支</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变基"><span class="post-toc-number">3.</span> <span class="post-toc-text">变基</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变基的基本操作"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">变基的基本操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#更有趣的变基例子"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">更有趣的变基例子</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变基的风险"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">变基的风险</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变基-vs-合并"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">变基 vs. 合并</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">4.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
         </nav>
     </aside>
 
@@ -424,6 +424,9 @@
 <p>现在，让我们回到之前的问题上来，到底合并还是变基好？希望你能明白，这并没有一个简单的答案。Git是一个非常强大的工具，它允许你对提交历史做许多事情，但每个团队、每个项目对此的需求并不相同。既然你已经分别学习了两者的用法，相信你能够根据实际情况作出明智的选择。</p>
 <p><strong>总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利。</strong></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们已经讲完了Git分支与合并的基础知识。你现在应该能自如地创建并切换至新分支、在不同分支之间切换以及合并本地分支。你现在应该也能通过推送你的分支至共享服务以分享它们、使用共享分支与他人协作以及在共享之前使用变基操作合并你的分支。同时通过这些例子，我们也能真真切切的感受到Git分支模型的强大，说分支模型是Git的杀手锏一点也不为过！</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">Pro Git Book</a></li>
+</ul>
 
         </div>
 
@@ -432,7 +435,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-10-22T09:25:03.615Z" itemprop="dateUpdated">2019-10-22 17:25:03</time>
+    最后更新时间：<time datetime="2019-10-22T15:50:39.871Z" itemprop="dateUpdated">2019-10-22 23:50:39</time>
 </span><br>
 
 
@@ -509,7 +512,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/10/22/greedy-algorithm/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">贪心算法</h4>
+      </a>
+    </div>
   
 
   
