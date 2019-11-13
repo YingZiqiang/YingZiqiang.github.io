@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Transformer代码实现 | yingzq&#39;s Blog | 练习bug时长两年半的实习生</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="NLP,Transformer,Deep Learning,PyTorch,BERT">
+    <meta name="description" content="Transformer是如今几乎所有的预训练模型的基本结构。也许我们平时更多的是关注如何更好的利用已经训练好的GPT、BERT等模型进行fine-tune，但是同样重要的是，我们需要了解这些强力的模型具体是如何构建的。所以本文我们主要研究如何在PyTorch框架下用代码实现 “Attention is All You Need” 论文中原始Transformer的结构。">
+<meta name="keywords" content="NLP,Transformer,Deep Learning,PyTorch,BERT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transformer代码实现">
+<meta property="og:url" content="http://www.yingzq.com/2019/11/05/the-annotated-transformer/index.html">
+<meta property="og:site_name" content="yingzq&#39;s Blog">
+<meta property="og:description" content="Transformer是如今几乎所有的预训练模型的基本结构。也许我们平时更多的是关注如何更好的利用已经训练好的GPT、BERT等模型进行fine-tune，但是同样重要的是，我们需要了解这些强力的模型具体是如何构建的。所以本文我们主要研究如何在PyTorch框架下用代码实现 “Attention is All You Need” 论文中原始Transformer的结构。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://image.yingzq.com/img/20191106202340.png">
+<meta property="og:image" content="http://image.yingzq.com/img/20191107111357.png">
+<meta property="og:image" content="http://image.yingzq.com/img/20191107113854.png">
+<meta property="og:updated_time" content="2019-11-07T16:36:29.694Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Transformer代码实现">
+<meta name="twitter:description" content="Transformer是如今几乎所有的预训练模型的基本结构。也许我们平时更多的是关注如何更好的利用已经训练好的GPT、BERT等模型进行fine-tune，但是同样重要的是，我们需要了解这些强力的模型具体是如何构建的。所以本文我们主要研究如何在PyTorch框架下用代码实现 “Attention is All You Need” 论文中原始Transformer的结构。">
+<meta name="twitter:image" content="http://image.yingzq.com/img/20191106202340.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="yingzq&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/avatar.jpg">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">应子强</h5>
+          <a href="mailto:yingzq0116@163.com" title="yingzq0116@163.com" class="mail">yingzq0116@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签云
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/YingZiqiang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Transformer代码实现</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Transformer代码实现</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-11-05T08:22:27.000Z" itemprop="datePublished" class="page-time">
+  2019-11-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">1.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景介绍"><span class="post-toc-number">2.</span> <span class="post-toc-text">背景介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模型结构"><span class="post-toc-number">3.</span> <span class="post-toc-text">模型结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Encoder-and-Decoder-Stacks"><span class="post-toc-number">4.</span> <span class="post-toc-text">Encoder and Decoder Stacks</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Encoder"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">Encoder</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Decoder"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">Decoder</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Attention"><span class="post-toc-number">5.</span> <span class="post-toc-text">Attention</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Attention在模型中的应用"><span class="post-toc-number">6.</span> <span class="post-toc-text">Attention在模型中的应用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Feed-Forward"><span class="post-toc-number">7.</span> <span class="post-toc-text">Feed-Forward</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Embeddings"><span class="post-toc-number">8.</span> <span class="post-toc-text">Embeddings</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Positional-Encoding"><span class="post-toc-number">9.</span> <span class="post-toc-text">Positional Encoding</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-the-annotated-transformer"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Transformer代码实现</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-11-05 16:22:27" datetime="2019-11-05T08:22:27.000Z"  itemprop="datePublished">2019-11-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>Transformer是如今几乎所有的预训练模型的基本结构。也许我们平时更多的是关注如何更好的利用已经训练好的GPT、BERT等模型进行fine-tune，但是同样重要的是，我们需要了解这些强力的模型具体是如何构建的。所以本文我们主要研究如何在PyTorch框架下用代码实现 <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">“Attention is All You Need”</a> 论文中原始Transformer的结构。</p>
+<a id="more"></a>
+
+<blockquote>
+<p>本文内容参考了 <a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html" target="_blank" rel="noopener">The Annotated Transformer</a> ，对应的代码则针对<code>PyTorch 1.1+</code>环境做了一定更新。</p>
+</blockquote>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>本文的测试环境是<code>Python 3.6+</code>和<code>PyTorch 1.1+</code>，如果版本不对可能代码需要略微的调整。如果有其他库显示未安装，只需要简单的使用<code>conda install &lt;package&gt;</code>或<code>pip install &lt;package&gt;</code>安装即可。</p>
+<p>所以在这里先导入所有需要用到的库，方便检测是否有缺失：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> math, copy, time</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn</span><br><span class="line">seaborn.set_context(context=<span class="string">"talk"</span>)</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
+
+<h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>当谈及序列模型(sequence modeling)，我们首先想到的就是RNN及其变种，但是RNN模型的缺点也非常明显：需要顺序计算，从而很难并行。因此出现了Extended Neural GPU、ByteNet和ConvS2S等网络模型。这些模型都是以CNN为基础，这比较容易并行，但是和RNN相比，它较难学习到长距离的依赖关系。</p>
+<p>本文的Transformer使用了Self-Attention机制，它在编码每一词的时候都能够注意(attend to)整个句子，从而可以解决长距离依赖的问题，同时计算Self-Attention可以用矩阵乘法一次计算所有的时刻，因此可以充分利用计算资源(CPU/GPU上的矩阵运算都是充分优化和高度并行的)。</p>
+<h2 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h2><p>目前的主流神经序列转换(neural sequence transduction)模型都是基于Encoder-Decoder结构的。所谓的序列转换模型就是把一个输入序列转换成另外一个输出序列，它们的长度很可能是不同的。比如基于神经网络的机器翻译，输入是法语句子，输出是英语句子，这就是一个序列转换模型。类似的包括文本摘要、对话等问题都可以看成序列转换问题。我们这里主要关注机器翻译，但是任何输入是一个序列输出是另外一个序列的问题都可以考虑使用Encoder-Decoder结构。</p>
+<p>Encoder将输入序列$(x_1,\ldots,x_n)$编码成一个连续的序列$\boldsymbol{z}=(z_1,\ldots,z_n)$。而Decoder根据$\boldsymbol{z}$来解码得到输出序列$(y_1,\ldots,y_m)$。Decoder是自回归的(auto-regressive)，它会把前一个时刻的输出作为当前时刻的输入。Encoder-Decoder结构对应的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EncoderDecoder</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    A standard Encoder-Decoder architecture. Base for this and many</span></span><br><span class="line"><span class="string">    other models.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, encoder, decoder, src_embed, tgt_embed, generator)</span>:</span></span><br><span class="line">        super(EncoderDecoder, self).__init__()</span><br><span class="line">        self.encoder = encoder</span><br><span class="line">        self.decoder = decoder</span><br><span class="line">        self.src_embed = src_embed</span><br><span class="line">        self.tgt_embed = tgt_embed</span><br><span class="line">        self.generator = generator</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, src, tgt, src_mask, tgt_mask)</span>:</span></span><br><span class="line">        <span class="string">"Take in and process masked src and target sequences."</span></span><br><span class="line">        <span class="keyword">return</span> self.decode(self.encode(src, src_mask), src_mask,</span><br><span class="line">                            tgt, tgt_mask)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">encode</span><span class="params">(self, src, src_mask)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.encoder(self.src_embed(src), src_mask)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(self, memory, src_mask, tgt, tgt_mask)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.decoder(self.tgt_embed(tgt), memory, src_mask, tgt_mask)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Generator</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"Define standard linear + softmax generation step."</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d_model, vocab)</span>:</span></span><br><span class="line">        super(Generator, self).__init__()</span><br><span class="line">        self.proj = nn.Linear(d_model, vocab)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> F.log_softmax(self.proj(x), dim=<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>EncoderDecoder定义了一种通用的Encoder-Decoder架构，具体的encoder、decoder、src_embed、target_embed和generator都是构造函数传入的参数。这样我们做实验更换不同的组件就会更加方便。</p>
+<p>解释一下各种参数的意义：encoder、encoder分别代表编码器和解码器；src_embed、tgt_embed分别代表源语言和目标语言的词向量(embedding)；generator则是根据解码器当前时刻的隐状态输出当前时刻的词，上面已给出具体的实现方法(即Generator类)。</p>
+<p>Transformer模型也遵循着Encoder-Decoder的架构。它的Encoder是由$N=6$个相同的EncoderLayer组成，每个EncoderLayer包含一个Self-Attention Sublayer层和一个Feed-Forward Sublayer层；而它的Decoder也是由$N=6$个相同的DecoderLayer组成，每个DecoderLayer包含一个Self-Attention Sublayer层、一个Encoder-Decoder-Attention Sublayer层和一个Feed-Forward Sublayer层。</p>
+<blockquote>
+<p>注：Feed-Forward层其实就是全连接层的意思。</p>
+</blockquote>
+<p>下图清晰的展示了Transformer整体架构：</p>
+<div align="center">
+<img src="http://image.yingzq.com/img/20191106202340.png" width="500" alt="Transformer整体架构">
+
+<p>图：Transformer整体架构</p>
+</div>
+
+<h2 id="Encoder-and-Decoder-Stacks"><a href="#Encoder-and-Decoder-Stacks" class="headerlink" title="Encoder and Decoder Stacks"></a>Encoder and Decoder Stacks</h2><h3 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h3><p>前面提到Encoder是由$N=6$个相同结构的EncoderLayer堆叠而成，所以我们定义Encoder的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clones</span><span class="params">(module, N)</span>:</span></span><br><span class="line">    <span class="string">"Produce N identical layers."</span></span><br><span class="line">    <span class="keyword">return</span> nn.ModuleList([copy.deepcopy(module) <span class="keyword">for</span> _ <span class="keyword">in</span> range(N)])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Encoder</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"Core encoder is a stack of N layers"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, layer, N)</span>:</span></span><br><span class="line">        super(Encoder, self).__init__()</span><br><span class="line">        self.layers = clones(layer, N)</span><br><span class="line">        self.norm = LayerNorm(layer.size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, mask)</span>:</span></span><br><span class="line">        <span class="string">"Pass the input (and mask) through each layer in turn."</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers:</span><br><span class="line">            x = layer(x, mask)</span><br><span class="line">        <span class="keyword">return</span> self.norm(x)</span><br></pre></td></tr></table></figure>
+
+<p>也就是Encoder会把传入的layer深拷贝N次，然后让传入的Tensor依次通过这N个layer，最后再通过一层<a href="https://arxiv.org/abs/1607.06450" target="_blank" rel="noopener">Layer Normalization</a>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LayerNorm</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"Construct a layernorm module (See citation for details)."</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, features, eps=<span class="number">1e-6</span>)</span>:</span></span><br><span class="line">        super(LayerNorm, self).__init__()</span><br><span class="line">        self.a_2 = nn.Parameter(torch.ones(features))</span><br><span class="line">        self.b_2 = nn.Parameter(torch.zeros(features))</span><br><span class="line">        self.eps = eps</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        mean = x.mean(<span class="number">-1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">        std = x.std(<span class="number">-1</span>, keepdim=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">return</span> self.a_2 * (x - mean) / (std + self.eps) + self.b_2</span><br></pre></td></tr></table></figure>
+
+<p>按照原论文，每一个EncoderLayer的每一个子层(sub-layer)的输出应该是$LayerNorm(x+Sublayer(x))$，其中的Sublayer(x)是对子层结构实现的抽象函数。这里稍微做了一些修改，首先在每一个子层的输出之后加了一个<a href="http://jmlr.org/papers/v15/srivastava14a.html" target="_blank" rel="noopener">Dropout层</a>，另外一个不同就是把LayerNorm层放到前面了。所以现在每一个子层实际的输出是：</p>
+<p>$$x+Dropout(Sublayer(LayerNorm(x)))$$</p>
+<blockquote>
+<p>注：原论文的LayerNorm放在最后，这里把它放在前面并且在Encoder的最后一层再加上了一个LayerNorm。这里的实现和论文的实现基本是一致的，只是给最底层的输入x多做了一个LayerNorm。</p>
+</blockquote>
+<p>为了加快残差连接的速度，模型中所有的子层(sub-layer)，包括Embedding层，将它们的输出维度均设置为$d_{model}=512$。所以我们有如下代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SublayerConnection</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    A residual connection followed by a layer norm.</span></span><br><span class="line"><span class="string">    Note for code simplicity the norm is first as opposed to last.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, size, dropout)</span>:</span></span><br><span class="line">        super(SublayerConnection, self).__init__()</span><br><span class="line">        self.norm = LayerNorm(size)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, sublayer)</span>:</span></span><br><span class="line">        <span class="string">"Apply residual connection to any sublayer with the same size."</span></span><br><span class="line">        <span class="keyword">return</span> x + self.dropout(sublayer(self.norm(x)))</span><br></pre></td></tr></table></figure>
+
+<p>EncoderLayer是由Self-Attention、Feed-Forward这两个子层构成，所以有：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EncoderLayer</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"Encoder is made up of self-attn and feed forward (defined below)"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, size, self_attn, feed_forward, dropout)</span>:</span></span><br><span class="line">        super(EncoderLayer, self).__init__()</span><br><span class="line">        self.self_attn = self_attn</span><br><span class="line">        self.feed_forward = feed_forward</span><br><span class="line">        self.sublayer = clones(SublayerConnection(size, dropout), <span class="number">2</span>)</span><br><span class="line">        self.size = size</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, mask)</span>:</span></span><br><span class="line">        <span class="string">"Follow Figure 1 (left) for connections."</span></span><br><span class="line">        x = self.sublayer[<span class="number">0</span>](x, <span class="keyword">lambda</span> x: self.self_attn(x, x, x, mask))</span><br><span class="line">        <span class="keyword">return</span> self.sublayer[<span class="number">1</span>](x, self.feed_forward)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h3><p>Decoder也是由$N=6$个相同结构的DecoderLayer堆叠而成。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Decoder</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"Generic N layer decoder with masking."</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, layer, N)</span>:</span></span><br><span class="line">        super(Decoder, self).__init__()</span><br><span class="line">        self.layers = clones(layer, N)</span><br><span class="line">        self.norm = LayerNorm(layer.size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, memory, src_mask, tgt_mask)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.layers:</span><br><span class="line">            x = layer(x, memory, src_mask, tgt_mask)</span><br><span class="line">        <span class="keyword">return</span> self.norm(x)</span><br></pre></td></tr></table></figure>
+
+<p>前面讲到，一个DecoderLayer除了有和EncoderLayer一样的两个子层，还多了一个Encoder-Decoder-Attention子层，这个子层会让模型在解码时会考虑最后一层Encoder所有时刻的输出。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecoderLayer</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"Decoder is made of self-attn, src-attn, and feed forward (defined below)"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, size, self_attn, src_attn, feed_forward, dropout)</span>:</span></span><br><span class="line">        super(DecoderLayer, self).__init__()</span><br><span class="line">        self.size = size</span><br><span class="line">        self.self_attn = self_attn</span><br><span class="line">        self.src_attn = src_attn</span><br><span class="line">        self.feed_forward = feed_forward</span><br><span class="line">        self.sublayer = clones(SublayerConnection(size, dropout), <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, memory, src_mask, tgt_mask)</span>:</span></span><br><span class="line">        <span class="string">"Follow Figure 1 (right) for connections."</span></span><br><span class="line">        m = memory</span><br><span class="line">        x = self.sublayer[<span class="number">0</span>](x, <span class="keyword">lambda</span> x: self.self_attn(x, x, x, tgt_mask))</span><br><span class="line">        x = self.sublayer[<span class="number">1</span>](x, <span class="keyword">lambda</span> x: self.src_attn(x, m, m, src_mask))</span><br><span class="line">        <span class="keyword">return</span> self.sublayer[<span class="number">2</span>](x, self.feed_forward)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：多出来的这一层Attention子层(代码中是src_attn)实现和Self-Attention是一样的，只不过src_attn的Query来自于前层Decoder的输出，但是Key和Value来自于Encoder最后一层的输出(代码中是memory)；而Self-Attention的Q、K、V则均来自前层的输出。</p>
+</blockquote>
+<p>Decoder和Encoder还有一个关键的不同：Decoder在解码第t个时刻的时候只能使用小于t时刻的输入，而不能使用t+1时刻及其之后的输入。因此我们需要一个函数来产生一个Mask矩阵：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsequent_mask</span><span class="params">(size)</span>:</span></span><br><span class="line">    <span class="string">"Mask out subsequent positions."</span></span><br><span class="line">    attn_shape = (<span class="number">1</span>, size, size)</span><br><span class="line">    subsequent_mask = np.triu(np.ones(attn_shape), k=<span class="number">1</span>).astype(<span class="string">'uint8'</span>)</span><br><span class="line">    <span class="keyword">return</span> torch.from_numpy(subsequent_mask) == <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码的意思是先用triu函数产生一个上三角矩阵，再利用matrix == 0得到所需要的下三角矩阵。</p>
+<h2 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h2><p>Attention(包括Self-Attention和普通的Attention)可以看成一个函数，它的输入是Query,Key和Value，输出是一个Tensor。其中输出是Value的加权平均，而权重则来自Query和Key的计算。</p>
+<p>论文中首先提到了Scaled Dot-Product Attention，如下图所示：</p>
+<div align="center">
+<img src="http://image.yingzq.com/img/20191107111357.png" width="300" alt="Scaled Dot-Product Attention">
+
+<p>图：Scaled Dot-Product Attention</p>
+</div>
+
+<blockquote>
+<p>Scaled Dot-Product Attention需要保证Query和Key的维度是相同的，记为$d_k$，Value的维度记为$d_v$。</p>
+</blockquote>
+<p>具体计算是先将一组query和所有的keys作点乘运算，然后除以$\sqrt{d_k}$保证后续梯度的稳定性，然后将这些分数进行softmax归一化，作为query和Keys的相似程度，也就是values加权平均的权重，最后将所有values作加权平均作为输出。这里用矩阵直接表示：</p>
+<p>$$Attention(Q,K,V)=softmax(\frac{Q K^T}{\sqrt{d_k}})V$$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">attention</span><span class="params">(query, key, value, mask=None, dropout=None)</span>:</span></span><br><span class="line">    <span class="string">"Compute 'Scaled Dot Product Attention'"</span></span><br><span class="line">    d_k = query.size(<span class="number">-1</span>)</span><br><span class="line">    scores = torch.matmul(query, key.transpose(<span class="number">-2</span>, <span class="number">-1</span>)) \</span><br><span class="line">             / math.sqrt(d_k)</span><br><span class="line">    <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        scores = scores.masked_fill(mask == <span class="number">0</span>, <span class="number">-1e9</span>)</span><br><span class="line">    p_attn = F.softmax(scores, dim = <span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">if</span> dropout <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        p_attn = dropout(p_attn)</span><br><span class="line">    <span class="keyword">return</span> torch.matmul(p_attn, value), p_attn</span><br></pre></td></tr></table></figure>
+
+<p>论文中非常重要的Multi-Head Attention便是基于Scaled Dot-Product Attention。其实很简单，前面定义的一组Q、K和V可以让一个词attend to相关的词，我们可以定义多组Q、K和V，它们分别可以关注不同的上下文：</p>
+<div align="center">
+<img src="http://image.yingzq.com/img/20191107113854.png" width="300" alt="Multi-Head Attention">
+
+<p>图：Multi-Head Attention</p>
+</div>
+
+<p>由上图我们可以得到如下计算公式：</p>
+<p>$$MultiHead(Q,K,V)=Concat(head_1,\ldots,head_h)W^O \\<br>where \  head_i=Attention(QW_i^Q,KW_i^K,VW_i^V)$$</p>
+<p>论文中使用了$h=8$个Head，所以此时$d_k=d_v=d_{model}/h=64$。虽然此时Head数扩大了$h=8$由于每一个Head的维度缩小了$h=8$倍，所以总体的计算成本是基本不变的。</p>
+<p>根据上述分析，我们可以写出Multi-Head Attention的代码了。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MultiHeadedAttention</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, h, d_model, dropout=<span class="number">0.1</span>)</span>:</span></span><br><span class="line">        <span class="string">"Take in model size and number of heads."</span></span><br><span class="line">        super(MultiHeadedAttention, self).__init__()</span><br><span class="line">        <span class="keyword">assert</span> d_model % h == <span class="number">0</span></span><br><span class="line">        <span class="comment"># We assume d_v always equals d_k</span></span><br><span class="line">        self.d_k = d_model // h</span><br><span class="line">        self.h = h</span><br><span class="line">        self.linears = clones(nn.Linear(d_model, d_model), <span class="number">4</span>)</span><br><span class="line">        self.attn = <span class="literal">None</span></span><br><span class="line">        self.dropout = nn.Dropout(p=dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, query, key, value, mask=None)</span>:</span></span><br><span class="line">        <span class="string">"Implements Figure 2"</span></span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="comment"># Same mask applied to all h heads.</span></span><br><span class="line">            mask = mask.unsqueeze(<span class="number">1</span>)</span><br><span class="line">        nbatches = query.size(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 1) Do all the linear projections in batch from d_model =&gt; h x d_k</span></span><br><span class="line">        query, key, value = \</span><br><span class="line">            [l(x).view(nbatches, <span class="number">-1</span>, self.h, self.d_k).transpose(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">             <span class="keyword">for</span> l, x <span class="keyword">in</span> zip(self.linears, (query, key, value))]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 2) Apply attention on all the projected vectors in batch.</span></span><br><span class="line">        x, self.attn = attention(query, key, value, mask=mask,</span><br><span class="line">                                 dropout=self.dropout)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 3) "Concat" using a view and apply a final linear.</span></span><br><span class="line">        x = x.transpose(<span class="number">1</span>, <span class="number">2</span>).contiguous() \</span><br><span class="line">             .view(nbatches, <span class="number">-1</span>, self.h * self.d_k)</span><br><span class="line">        <span class="keyword">return</span> self.linears[<span class="number">-1</span>](x)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Attention在模型中的应用"><a href="#Attention在模型中的应用" class="headerlink" title="Attention在模型中的应用"></a>Attention在模型中的应用</h2><p>在Transformer里，有3个地方用到了Multi-Head Attention：</p>
+<p>1) Decoder的Encoder-Decoder-Attention层。其中query来自于前一层Decoder的输出，而key和value则来自于是Encoder最后一层的输出，<strong>这个Attention层使得Decoder在解码时会考虑最后一层Encoder所有时刻的输出</strong>，是一种在Encoder-Decoder架构中常用的注意力机制。<br>2) Encoder的Self-Attention层。query，key和value均来自于相同的地方，也就是前层Encoder的输出。<br>3) Decoder的Self-Attention层。query，key和value均来自于相同的地方，也就是前层Decoder的输出，但是Mask使得它不能访问未来时刻的输出。</p>
+<h2 id="Feed-Forward"><a href="#Feed-Forward" class="headerlink" title="Feed-Forward"></a>Feed-Forward</h2><p>除了Attention子层，Encoder和Decoder的每一层还包括一个Feed-Forward子层，也就是全连接层。每个时刻的全连接层是可以独立并行计算的(当然参数是共享的)。全连接层由两个线性变换以及它们之间的ReLU激活组成：</p>
+<p>$$FFN(x)=max(0,xW_1+b_1)W_2+b_2$$</p>
+<p>全连接层的输入和输出都是$d_{model}=512$维的，中间隐单元的个数是$d_{ff}=2048$。代码实现非常简单：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PositionwiseFeedForward</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"Implements FFN equation."</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d_model, d_ff, dropout=<span class="number">0.1</span>)</span>:</span></span><br><span class="line">        super(PositionwiseFeedForward, self).__init__()</span><br><span class="line">        self.w_1 = nn.Linear(d_model, d_ff)</span><br><span class="line">        self.w_2 = nn.Linear(d_ff, d_model)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.w_2(self.dropout(F.relu(self.w_1(x))))</span><br></pre></td></tr></table></figure>
+
+<h2 id="Embeddings"><a href="#Embeddings" class="headerlink" title="Embeddings"></a>Embeddings</h2><p>输入的词序列都是ID序列，所以需要有个Embeddings层，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Embeddings</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d_model, vocab)</span>:</span></span><br><span class="line">		super(Embeddings, self).__init__()</span><br><span class="line">		self.lut = nn.Embedding(vocab, d_model)</span><br><span class="line">		self.d_model = d_model</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> self.lut(x) * math.sqrt(self.d_model)</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，在Embeddings层，所有的权重都扩大了$d_{model}$倍。</p>
+<h2 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h2><p>其实Transformer是没有考虑词的顺序(位置)关系的。为了解决这个问题引入位置编码(Positional Encoding)，论文中使用的公式如下：</p>
+<p>$$PE_{(pos,2i)}=sin(pos/10000^{2i/d_{model}}) \\<br>PE_{(pos,2i+1)}=cos(pos/10000^{2i/d_{model}})$$</p>
+<p>其中pos代表位置而i代表维度。例如输入的ID序列长度为10，那么经过Embeddings层后Tensor的尺寸就是(10,512)，此时上式中的pos就是0<del>9；对于不同维度，这里是0</del>511，偶数维使用sin函数，而奇数维使用cos函数。</p>
+<p><strong>这种位置编码的好处是：$PE_{pos+k}$可以表示成$PE_{pos}$的线性函数，这样网络就能容易的学到相对位置的关系。</strong> 我们来简单验证下，以第2i维为例，这里$10000^{2i/d_{model}}$是一个常数，我们记为$W_2i$。</p>
+<p>$$PE_{(pos+k,2i)}=sin(\frac{pos+k}{W_{2i}})=$$</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-11-07T16:36:29.694Z" itemprop="dateUpdated">2019-11-08 00:36:29</time>
+</span><br>
+
+
+        
+        若有疑问或者本人有写的不对的地方, 欢迎留言反馈, 非常感谢您的阅读~
+        
+    </div>
+    
+    <footer>
+        <a href="http://www.yingzq.com">
+            <img src="/img/avatar.jpg" alt="应子强">
+            应子强
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BERT/">BERT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PyTorch/">PyTorch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Transformer/">Transformer</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yingzq.com/2019/11/05/the-annotated-transformer/&title=《Transformer代码实现》 — yingzq's Blog&pic=http://www.yingzq.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yingzq.com/2019/11/05/the-annotated-transformer/&title=《Transformer代码实现》 — yingzq's Blog&source=Transformer是如今几乎所有的预训练模型的基本结构。也许我们平时更多的是关注如何更好的利用已经训练好的GPT、BERT等模型进行fine-tune..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yingzq.com/2019/11/05/the-annotated-transformer/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Transformer代码实现》 — yingzq's Blog&url=http://www.yingzq.com/2019/11/05/the-annotated-transformer/&via=http://www.yingzq.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yingzq.com/2019/11/05/the-annotated-transformer/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/10/30/the-illustrated-transformer/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Transformer图解</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "mGqkrgTscxf4JdcqkEHkFCfs-gzGzoHsz",
+            appKey: "PwU9oOfhNnWOKaMaOTqQpiNW",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>应子强 &copy; 2015 - 2019</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备19041830号</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yingzq.com/2019/11/05/the-annotated-transformer/&title=《Transformer代码实现》 — yingzq's Blog&pic=http://www.yingzq.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yingzq.com/2019/11/05/the-annotated-transformer/&title=《Transformer代码实现》 — yingzq's Blog&source=Transformer是如今几乎所有的预训练模型的基本结构。也许我们平时更多的是关注如何更好的利用已经训练好的GPT、BERT等模型进行fine-tune..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yingzq.com/2019/11/05/the-annotated-transformer/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Transformer代码实现》 — yingzq's Blog&url=http://www.yingzq.com/2019/11/05/the-annotated-transformer/&via=http://www.yingzq.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yingzq.com/2019/11/05/the-annotated-transformer/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aQY6EMAwF0b7/pZntSK1AfRtGg1NZtWiU5LGwbCefDx7HYpz/+/3m7/dXv7/fv23IkCHjtQyy/OrJap7zVcge+N5kyJCxD2M1NXnnPLDyedJ1ZciQIYOEVxIu0xRQhgwZMp4IuP3CuBOgZciQsQ+DFLGckW6RhObbanEZMmS8kMGD49//fuR8Q4YMGa9iHOHgrbQ01HaGDBkyZjN4gOvw+FFlbT8yZMiYzaiVr+nRZv/44QImQ4aM0YwgKp+yO3OSFckHlSFDxm6Mu6Ym4H6aKEOGjH0YPClMn/PZbrjeIUOGjHEMXsTyMFoLuPyKRqsWlyFDxssZfAEC4B+Of6zlijJkyNiAwRe762ghzVsv0koZMmSMZnTKy3RhMj8vepelrAwZMsYx0uun6YWMNJXkLTYZMmTsw0jb8YRUSwHTS2NB2JUhQ8YgBmnod57wTfMCWIYMGTswakGTF8Bpo78YgmXIkDGawZtraYKYXrNIDzIvLofJkCFjA0Ya8mqpHmnGBQ07GTJkbMNIzz8PPNKCmV/UkCFDxm6MThOfHDP0r449khrKkCHjHzOOcPDUrXNSEVNlyJAxmpEeAKTts/6RQHDZQoYMGaMZvPhMvwTHpwFXhgwZezJq5Wit69VJ+y5KWRkyZMgIW2O1LRZLVhkyZMgoBd+7Qi25QCZDhowdGGmjP2WQrXc+hwwZMmYzanlX7UAxPSSofQ4ZMmQMYvwAGdxVg5zI7RkAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '快回来练习bug!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'yingzq's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

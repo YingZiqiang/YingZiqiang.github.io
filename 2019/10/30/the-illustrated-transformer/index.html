@@ -20,9 +20,9 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="NLP,Transformer,Deep Learning,PyTorch,BERT">
+    <meta name="keywords" content="NLP,Transformer,Deep Learning,BERT">
     <meta name="description" content="Transformer模型来自论文 Attention Is All You Need 。这个模型最初是为了提高机器翻译的效率，它的Self-Attention机制和Position Encoding可以替代RNN。因为RNN是顺序执行的，t时刻没有完成就不能处理t+1时刻，因此很难并行。但是后来发现Self-Attention效果很好，在很多其它的地方也可以使用Transformer模型。这包括">
-<meta name="keywords" content="NLP,Transformer,Deep Learning,PyTorch,BERT">
+<meta name="keywords" content="NLP,Transformer,Deep Learning,BERT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer图解">
 <meta property="og:url" content="http://www.yingzq.com/2019/10/30/the-illustrated-transformer/index.html">
@@ -55,7 +55,7 @@
 <meta property="og:image" content="http://image.yingzq.com/img/20191104203857.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20191104204732.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20191104210604.png">
-<meta property="og:updated_time" content="2019-11-04T15:30:14.994Z">
+<meta property="og:updated_time" content="2019-11-12T14:16:24.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Transformer图解">
 <meta name="twitter:description" content="Transformer模型来自论文 Attention Is All You Need 。这个模型最初是为了提高机器翻译的效率，它的Self-Attention机制和Position Encoding可以替代RNN。因为RNN是顺序执行的，t时刻没有完成就不能处理t+1时刻，因此很难并行。但是后来发现Self-Attention效果很好，在很多其它的地方也可以使用Transformer模型。这包括">
@@ -237,7 +237,7 @@
 <p>图：Stacked Encoder and Decoder</p>
 </div>
 
-<p>对于Encoders中的每一个Encoder，它们结构都是相同的，<strong>但是并不会共享权值</strong>。每个Encoder由两个子网络层组成，分别是一个Self-Attention层和一个前馈网络(全连接网络)，如下图所示：</p>
+<p>对于Encoders中的每一个Encoder，它们结构都是相同的，<strong>但是并不会共享权值</strong>。每个Encoder由两个子网络层组成，分别是一个Self-Attention层和一个Feed-Forward层(全连接层)，如下图所示：</p>
 <div align="center">
 <img src="http://image.yingzq.com/img/20191103154622.png" width="600" alt="Transformer的一个Encoder层">
 
@@ -294,7 +294,7 @@
 
 <p>我们可以看到，在编码it这个单词的时候，Self-Attention让模型更多地关注到“The animal”，因此编码后的it有了Animal的语义。</p>
 <h2 id="Self-Attention详细介绍"><a href="#Self-Attention详细介绍" class="headerlink" title="Self-Attention详细介绍"></a>Self-Attention详细介绍</h2><p>下面我们详细的介绍Self-Attention是怎么计算的，首先介绍向量的形式逐个时刻计算，这便于理解，接下来我们把它写出矩阵的形式一次计算所有时刻的结果。</p>
-<p>对于输入的每一个向量(第一层是词的Embedding，其它层是前一层的输出)，我们首先需要生成3个新的向量Q、K和V，分别代表Query向量、Key向量和Value向量。<strong>Q表示为了编码当前词，需要去注意(attend to)其它(其实也包括它自己)的词，所以我们需要有一个Query向量；而Key向量可以认为是这个词用于被检索的关键信息；Value向量则是真正的内容。</strong></p>
+<p>对于输入的每一个向量(第一层是词的Embedding，其它层是前一层的输出)，我们首先需要生成3个新的向量Q、K和V，分别代表Query向量、Key向量和Value向量。<strong>Query向量表示为了编码当前词，需要去注意(attend to)其它(其实也包括它自己)的词；而Key向量可以认为是这个词用于被检索的关键信息；Value向量则是真正的内容。</strong></p>
 <p>我们对比一下普通的Attention(Luong 2015)，使用内积计算energy的情况。如下图所示，在这里，Key和Value向量都是它本身，而Query向量是当前隐状态$h_t$。计算energy $e_{tj}$的时候我们计算Q($h_t$)和K($\overline{h}_j$)的内积，然后用softmax进行归一化，最后把所有的$\overline{h}_j$加权平均得到context向量。</p>
 <div align="center">
 <img src="http://image.yingzq.com/img/20191104100653.png" width="600" alt="普通的Attention机制">
@@ -407,7 +407,7 @@
 <p>图：位置编码例子</p>
 </div>
 
-<h2 id="残差连接"><a href="#残差连接" class="headerlink" title="残差连接"></a>残差连接</h2><p>在继续之前，我们需要说说编码器架构中的一个细节：每个Encoder中的每个子层(Self-Attention层和全连接层)在其周围都有一个残差连接，然后紧接着是一个<a href="https://arxiv.org/abs/1607.06450" target="_blank" rel="noopener">Layer Normalization</a>层。如下图所示：</p>
+<h2 id="残差连接"><a href="#残差连接" class="headerlink" title="残差连接"></a>残差连接</h2><p>在继续之前，我们需要说说编码器架构中的一个细节：每个Encoder中的每个子层(Self-Attention层和全连接层)在其周围都有一个残差连接，然后紧接着是一个 <a href="https://arxiv.org/abs/1607.06450" target="_blank" rel="noopener">Layer Normalization</a> 层。如下图所示：</p>
 <div align="center">
 <img src="http://image.yingzq.com/img/20191104203857.png" width="600" alt="残差和Layer Normalization">
 
@@ -429,7 +429,7 @@
 <p>图：两层Encoder、Decoder堆叠的Transformer</p>
 </div>
 
-<h2 id="省略部分"><a href="#省略部分" class="headerlink" title="省略部分"></a>省略部分</h2><p>到这里，Transformer的主体部分已经全部介绍完，关于机器翻译任务解码的细节、最后输出层的设计、损失函数的选取等并不是本文关注的重点，我们会在 <a href="/2019/09/22/the-annotated-transformer/" title="Transformer代码实现">Transformer代码实现</a> 中完完全全的实现一遍，在这里便不做多余的介绍。</p>
+<h2 id="省略部分"><a href="#省略部分" class="headerlink" title="省略部分"></a>省略部分</h2><p>到这里，Transformer的主体部分已经全部介绍完，关于机器翻译任务解码的细节、最后输出层的设计、损失函数的选取等并不是本文关注的重点，我们会在 <a href="/2019/11/05/the-annotated-transformer/" title="Transformer代码实现">Transformer代码实现</a> 中完完全全的实现一遍，在这里便不做多余的介绍。</p>
 
         </div>
 
@@ -438,7 +438,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-11-04T15:30:14.994Z" itemprop="dateUpdated">2019-11-04 23:30:14</time>
+    最后更新时间：<time datetime="2019-11-12T14:16:24.771Z" itemprop="dateUpdated">2019-11-12 22:16:24</time>
 </span><br>
 
 
@@ -460,7 +460,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BERT/">BERT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PyTorch/">PyTorch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Transformer/">Transformer</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BERT/">BERT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Transformer/">Transformer</a></li></ul>
 
 
             
@@ -515,7 +515,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/11/05/the-annotated-transformer/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Transformer代码实现</h4>
+      </a>
+    </div>
   
 
   
