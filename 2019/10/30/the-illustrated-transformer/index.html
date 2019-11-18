@@ -20,9 +20,9 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="NLP,Transformer,Deep Learning,BERT">
+    <meta name="keywords" content="NLP,Deep Learning,Transformer,BERT">
     <meta name="description" content="Transformer模型来自论文 Attention Is All You Need 。这个模型最初是为了提高机器翻译的效率，它的Self-Attention机制和Position Encoding可以替代RNN。因为RNN是顺序执行的，t时刻没有完成就不能处理t+1时刻，因此很难并行。但是后来发现Self-Attention效果很好，在很多其它的地方也可以使用Transformer模型。这包括">
-<meta name="keywords" content="NLP,Transformer,Deep Learning,BERT">
+<meta name="keywords" content="NLP,Deep Learning,Transformer,BERT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer图解">
 <meta property="og:url" content="http://www.yingzq.com/2019/10/30/the-illustrated-transformer/index.html">
@@ -55,7 +55,7 @@
 <meta property="og:image" content="http://image.yingzq.com/img/20191104203857.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20191104204732.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20191104210604.png">
-<meta property="og:updated_time" content="2019-11-12T14:16:24.771Z">
+<meta property="og:updated_time" content="2019-11-14T11:56:46.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Transformer图解">
 <meta name="twitter:description" content="Transformer模型来自论文 Attention Is All You Need 。这个模型最初是为了提高机器翻译的效率，它的Self-Attention机制和Position Encoding可以替代RNN。因为RNN是顺序执行的，t时刻没有完成就不能处理t+1时刻，因此很难并行。但是后来发现Self-Attention效果很好，在很多其它的地方也可以使用Transformer模型。这包括">
@@ -366,11 +366,11 @@
 <p>图：Multi-Head计算输出多个Z</p>
 </div>
 
-<p>但是后面的全连接网络需要的输入是一个矩阵而不是多个矩阵，因此我们可以把多个head输出的Z按照第二个维度拼接起来，但是这样的特征有一些多，因此Transformer又用了一个线性变换(矩阵$W^O$)对它进行了压缩。这个过程如下图所示：</p>
+<p>但是后面的全连接网络需要的输入是一个矩阵而不是多个矩阵，因此我们可以把每个head输出的$Z_i$拼接起来，然后再经过一个线性变换(矩阵$W^O$)得到最终的输出矩阵Z。这个过程如下图所示：</p>
 <div align="center">
-<img src="http://image.yingzq.com/img/20191104115314.png" width="600" alt="Multi-Head输出的拼接压缩">
+<img src="http://image.yingzq.com/img/20191104115314.png" width="600" alt="Multi-Head生成最终的矩阵Z">
 
-<p>图：Multi-Head输出的拼接压缩</p>
+<p>图：Multi-Head生成最终的矩阵Z</p>
 </div>
 
 <p>上面的步骤涉及很多步骤和矩阵运算，我们用一张大图把整个过程表示出来，如下图所示：</p>
@@ -429,7 +429,7 @@
 <p>图：两层Encoder、Decoder堆叠的Transformer</p>
 </div>
 
-<h2 id="省略部分"><a href="#省略部分" class="headerlink" title="省略部分"></a>省略部分</h2><p>到这里，Transformer的主体部分已经全部介绍完，关于机器翻译任务解码的细节、最后输出层的设计、损失函数的选取等并不是本文关注的重点，我们会在 <a href="/2019/11/05/the-annotated-transformer/" title="Transformer代码实现">Transformer代码实现</a> 中完完全全的实现一遍，在这里便不做多余的介绍。</p>
+<h2 id="省略部分"><a href="#省略部分" class="headerlink" title="省略部分"></a>省略部分</h2><p>到这里，Transformer的主体部分已经全部介绍完，关于机器翻译任务解码的细节、最后输出层的设计、损失函数的选取等并不是本文关注的重点，我们会在 <a href="/2019/11/18/the-annotated-transformer/" title="Transformer代码实现">Transformer代码实现</a> 中完完全全的实现一遍，在这里便不做多余的介绍。</p>
 
         </div>
 
@@ -438,7 +438,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-11-12T14:16:24.771Z" itemprop="dateUpdated">2019-11-12 22:16:24</time>
+    最后更新时间：<time datetime="2019-11-14T11:56:46.055Z" itemprop="dateUpdated">2019-11-14 19:56:46</time>
 </span><br>
 
 
@@ -518,7 +518,7 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2019/11/05/the-annotated-transformer/" id="post-prev" class="post-nav-link">
+      <a href="/2019/11/18/the-annotated-transformer/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">Transformer代码实现</h4>
       </a>
