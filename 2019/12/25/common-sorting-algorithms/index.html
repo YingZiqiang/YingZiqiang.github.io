@@ -41,7 +41,7 @@
 <meta property="og:image" content="http://image.yingzq.com/img/20191228220059.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20191229122730.png">
 <meta property="article:published_time" content="2019-12-25T11:55:56.000Z">
-<meta property="article:modified_time" content="2019-12-29T06:39:47.847Z">
+<meta property="article:modified_time" content="2019-12-29T06:54:31.936Z">
 <meta property="article:author" content="应子强">
 <meta property="article:tag" content="数据结构与算法">
 <meta property="article:tag" content="Java">
@@ -208,7 +208,7 @@
 <li><strong>非比较类排序</strong>：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，以线性时间运行，因此也称为线性时间非比较类排序。</li>
 </ul>
 <div align=center>
-<img src="http://image.yingzq.com/img/20191229143752.png" width="700" alt="排序算法分类" />
+<img src="http://image.yingzq.com/img/20191229143752.png" width="600" alt="排序算法分类" />
 
 <p>图：排序算法分类</p>
 </div>
@@ -320,13 +320,11 @@
 <li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样一趟比较交换下来排在最右的元素就会是最大的数；</li>
 <li>除去最右的元素，我们对剩余的元素做同样的工作，如此重复下去，直到排序完成。</li>
 </ol>
-<h3 id="动态演示"><a href="#动态演示" class="headerlink" title="动态演示"></a>动态演示</h3><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://image.yingzq.com/img/bubble-sort.gif" alt="冒泡排序演示" title="">
-                </div>
-                <div class="image-caption">冒泡排序演示</div>
-            </figure>
+<h3 id="动态演示"><a href="#动态演示" class="headerlink" title="动态演示"></a>动态演示</h3><div align=center>
+<img src="http://image.yingzq.com/img/bubble-sort.gif" width="700" alt="冒泡排序演示" />
+
+<p>冒泡排序演示</p>
+</div>
 
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bubble</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = arr.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) swap(arr, j, j + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -344,13 +342,11 @@
 <li>如此往复，直到将整个数组排序。</li>
 </ol>
 <p>因为这种算法会不断的选择剩余元素之中的最小值，所以叫做选择排序。</p>
-<h3 id="动态展示"><a href="#动态展示" class="headerlink" title="动态展示"></a>动态展示</h3><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://image.yingzq.com/img/selection-sort.gif" alt="选择排序展示" title="">
-                </div>
-                <div class="image-caption">选择排序展示</div>
-            </figure>
+<h3 id="动态展示"><a href="#动态展示" class="headerlink" title="动态展示"></a>动态展示</h3><div align=center>
+<img src="http://image.yingzq.com/img/selection-sort.gif" width="700" alt="选择排序展示" />
+
+<p>选择排序展示</p>
+</div>
 
 <h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Selection</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = arr.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> min = i;  <span class="comment">// 最小元素的引索</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; len; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (arr[j] &lt; arr[min]) min = j;</span><br><span class="line">            &#125;</span><br><span class="line">            swap(arr, i, min);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -366,13 +362,11 @@
 <li>把它与左边第一个元素比较，如果左边第一个元素比它大，则继续与左边第二个元素比较下去，直到遇到不比它大的元素，然后插到这个元素的右边；</li>
 <li>继续选取第3，4，…n个元素,重复步骤 2 ，选择适当的位置插入。</li>
 </ol>
-<h3 id="动态演示-1"><a href="#动态演示-1" class="headerlink" title="动态演示"></a>动态演示</h3><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://image.yingzq.com/img/insertion-sort.gif" alt="插入排序展示" title="">
-                </div>
-                <div class="image-caption">插入排序展示</div>
-            </figure>
+<h3 id="动态演示-1"><a href="#动态演示-1" class="headerlink" title="动态演示"></a>动态演示</h3><div align=center>
+<img src="http://image.yingzq.com/img/insertion-sort.gif" width="700" alt="插入排序展示" />
+
+<p>插入排序展示</p>
+</div>
 
 <h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Insertion</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = arr.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="comment">// 将arr[i]插入到arr[i-1]、arr[i-2]、arr[i-3]...之中</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; arr[j] &lt; arr[j - <span class="number">1</span>]; j--) &#123;</span><br><span class="line">                swap(arr, j, j - <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -413,7 +407,7 @@
 <p>归并排序是一种分治的排序方法。</p>
 </blockquote>
 <h3 id="算法图示-1"><a href="#算法图示-1" class="headerlink" title="算法图示"></a>算法图示</h3><div align=center>
-<img src="http://image.yingzq.com/img/20191226225842.png" width="700" alt="归并排序图示" />
+<img src="http://image.yingzq.com/img/20191226225842.png" width="600" alt="归并排序图示" />
 
 <p>图：归并排序图示</p>
 </div>
@@ -566,7 +560,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-12-29T06:39:47.847Z" itemprop="dateUpdated">2019-12-29 14:39:47</time>
+    最后更新时间：<time datetime="2019-12-29T06:54:31.936Z" itemprop="dateUpdated">2019-12-29 14:54:31</time>
 </span><br>
 
 
