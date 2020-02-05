@@ -55,7 +55,7 @@
 <meta property="og:image" content="http://image.yingzq.com/img/20191104204732.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20191104210604.png">
 <meta property="article:published_time" content="2019-10-29T16:23:45.000Z">
-<meta property="article:modified_time" content="2019-11-14T11:56:46.055Z">
+<meta property="article:modified_time" content="2020-02-01T12:51:11.221Z">
 <meta property="article:author" content="应子强">
 <meta property="article:tag" content="NLP">
 <meta property="article:tag" content="Transformer">
@@ -394,7 +394,7 @@
 <h2 id="位置编码-Positional-Encoding"><a href="#位置编码-Positional-Encoding" class="headerlink" title="位置编码(Positional Encoding)"></a>位置编码(Positional Encoding)</h2><blockquote>
 <p>注意：这是Transformer原始论文使用的位置编码方法，而在BERT模型里，使用的是简单的可以学习的Embedding，和Word Embedding一样，只不过输入是位置而不是词而已。</p>
 </blockquote>
-<p>我们的目的是用Self-Attention替代RNN，RNN能够记住过去的信息，这可以通过Self-Attention“实时”的注意相关的任何词来实现等价(甚至更好)的效果。RNN还有一个特定就是能考虑词的顺序(位置)关系，一个句子即使词完全是相同的但是语义可能完全不同，比如“北京到上海的机票”与“上海到北京的机票”，它们的语义就有很大的差别。我们上面的介绍的Self-Attention是不考虑词的顺序的，如果模型参数固定了，上面两个句子的北京都会被编码成相同的向量。但是实际上我们可以期望这两个北京编码的结果不同，前者可能需要编码出发城市的语义，而后者需要包含目的城市的语义。而RNN是可以(至少是可能)学到这一点的。当然RNN为了实现这一点的代价就是顺序处理，很难并行。</p>
+<p>我们的目的是用Self-Attention替代RNN，RNN能够记住过去的信息，这可以通过Self-Attention“实时”的注意相关的任何词来实现等价(甚至更好)的效果。RNN还有一个特点就是能考虑词的顺序(位置)关系，一个句子即使词完全是相同的但是语义可能完全不同，比如“北京到上海的机票”与“上海到北京的机票”，它们的语义就有很大的差别。我们上面的介绍的Self-Attention是不考虑词的顺序的，如果模型参数固定了，上面两个句子的北京都会被编码成相同的向量。但是实际上我们可以期望这两个北京编码的结果不同，前者可能需要编码出发城市的语义，而后者需要包含目的城市的语义。而RNN是可以(至少是可能)学到这一点的。当然RNN为了实现这一点的代价就是顺序处理，很难并行。</p>
 <p>为了解决这个问题，我们需要引入位置编码，也就是t时刻的输入，除了Embedding之外(这是与位置无关的)，我们还引入一个向量，这个向量是与t有关的，我们把Embedding和位置编码向量加起来作为模型的输入。这样的话如果两个词在不同的位置出现了，虽然它们的Embedding是相同的，但是由于位置编码不同，最终得到的向量也是不同的。</p>
 <p>位置编码有很多方法，其中需要考虑的一个重要因素就是需要它编码的是相对位置的关系。比如两个句子：“北京到上海的机票”和“你好，我们要一张北京到上海的机票”。显然加入位置编码之后，两个北京的向量是不同的了，两个上海的向量也是不同的了，但是我们期望$Q_{北京1} K_{上海1}=Q_{北京2} K_{上海2}$。具体的位置编码算法不是这里关注的重点，我们以后再介绍。位置编码加入后的模型如下图所示：</p>
 <div align=center>
@@ -441,7 +441,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-11-14T11:56:46.055Z" itemprop="dateUpdated">2019-11-14 19:56:46</time>
+    最后更新时间：<time datetime="2020-02-01T12:51:11.221Z" itemprop="dateUpdated">2020-02-01 20:51:11</time>
 </span><br>
 
 
@@ -564,8 +564,8 @@
         });
         new Valine({
             el: '#comments',
-            notify: 'false' == 'true',
-            verify: 'false' == 'true',
+            notify: 'true' == 'true',
+            verify: 'true' == 'true',
             appId: "mGqkrgTscxf4JdcqkEHkFCfs-gzGzoHsz",
             appKey: "PwU9oOfhNnWOKaMaOTqQpiNW",
             avatar: "mm",
