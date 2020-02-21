@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>《剑指offer第二版》阅读笔记（三） | yingzq&#39;s Blog | 练习bug时长两年半的实习生</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据结构与算法,Java,阅读笔记">
+    <meta name="description" content="《剑指offer第二版》阅读笔记最后一个部分，记录了书中面试题51到最后的部分。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《剑指offer第二版》阅读笔记（三）">
+<meta property="og:url" content="http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/index.html">
+<meta property="og:site_name" content="yingzq&#39;s Blog">
+<meta property="og:description" content="《剑指offer第二版》阅读笔记最后一个部分，记录了书中面试题51到最后的部分。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.yingzq.com/img/20200222000234.png">
+<meta property="og:image" content="http://image.yingzq.com/img/20200222000524.png">
+<meta property="article:published_time" content="2020-02-21T05:02:22.000Z">
+<meta property="article:modified_time" content="2020-02-21T17:02:48.605Z">
+<meta property="article:author" content="应子强">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="阅读笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.yingzq.com/img/20200222000234.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="yingzq&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/avatar.jpg">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">应子强</h5>
+          <a href="mailto:yingzq0116@163.com" title="yingzq0116@163.com" class="mail">yingzq0116@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签云
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/YingZiqiang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">《剑指offer第二版》阅读笔记（三）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">《剑指offer第二版》阅读笔记（三）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-02-21T05:02:22.000Z" itemprop="datePublished" class="page-time">
+  2020-02-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系列文章"><span class="post-toc-number">1.</span> <span class="post-toc-text">系列文章</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题51：数组中的逆序对"><span class="post-toc-number">2.</span> <span class="post-toc-text">面试题51：数组中的逆序对</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题52：两个链表的第一个公共节点"><span class="post-toc-number">3.</span> <span class="post-toc-text">面试题52：两个链表的第一个公共节点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-1"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题53-1：数字在排序数组中出现的次数"><span class="post-toc-number">4.</span> <span class="post-toc-text">面试题53-1：数字在排序数组中出现的次数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-2"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-2"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题53-2：0～n-1中缺失的数字"><span class="post-toc-number">5.</span> <span class="post-toc-text">面试题53-2：0～n-1中缺失的数字</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-3"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-3"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题54：二叉搜索树的第k大节点"><span class="post-toc-number">6.</span> <span class="post-toc-text">面试题54：二叉搜索树的第k大节点</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-4"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-4"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题55-1：二叉树的深度"><span class="post-toc-number">7.</span> <span class="post-toc-text">面试题55-1：二叉树的深度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-5"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-5"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题55-2：平衡二叉树"><span class="post-toc-number">8.</span> <span class="post-toc-text">面试题55-2：平衡二叉树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-6"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-6"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题56-1：数组中只出现一次的两个数字"><span class="post-toc-number">9.</span> <span class="post-toc-text">面试题56-1：数组中只出现一次的两个数字</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-7"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-7"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题56-2：数组中唯一只出现一次的数字"><span class="post-toc-number">10.</span> <span class="post-toc-text">面试题56-2：数组中唯一只出现一次的数字</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-8"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-8"><span class="post-toc-number">10.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题57-1：和为s的两个数字"><span class="post-toc-number">11.</span> <span class="post-toc-text">面试题57-1：和为s的两个数字</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-9"><span class="post-toc-number">11.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-9"><span class="post-toc-number">11.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题57-2：和为s的连续正数序列"><span class="post-toc-number">12.</span> <span class="post-toc-text">面试题57-2：和为s的连续正数序列</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-10"><span class="post-toc-number">12.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-10"><span class="post-toc-number">12.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题58-1：翻转单词顺序"><span class="post-toc-number">13.</span> <span class="post-toc-text">面试题58-1：翻转单词顺序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-11"><span class="post-toc-number">13.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-11"><span class="post-toc-number">13.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题58-2：左旋转字符串"><span class="post-toc-number">14.</span> <span class="post-toc-text">面试题58-2：左旋转字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-12"><span class="post-toc-number">14.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-12"><span class="post-toc-number">14.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题59-1：滑动窗口的最大值"><span class="post-toc-number">15.</span> <span class="post-toc-text">面试题59-1：滑动窗口的最大值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-13"><span class="post-toc-number">15.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-13"><span class="post-toc-number">15.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题59-2：队列的最大值"><span class="post-toc-number">16.</span> <span class="post-toc-text">面试题59-2：队列的最大值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-14"><span class="post-toc-number">16.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-14"><span class="post-toc-number">16.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题60：n个骰子的点数"><span class="post-toc-number">17.</span> <span class="post-toc-text">面试题60：n个骰子的点数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-15"><span class="post-toc-number">17.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-15"><span class="post-toc-number">17.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题61：扑克牌中的顺子"><span class="post-toc-number">18.</span> <span class="post-toc-text">面试题61：扑克牌中的顺子</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-16"><span class="post-toc-number">18.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-16"><span class="post-toc-number">18.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题62：圆圈中最后剩下的数字"><span class="post-toc-number">19.</span> <span class="post-toc-text">面试题62：圆圈中最后剩下的数字</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-17"><span class="post-toc-number">19.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-17"><span class="post-toc-number">19.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题63：股票的最大利润"><span class="post-toc-number">20.</span> <span class="post-toc-text">面试题63：股票的最大利润</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-18"><span class="post-toc-number">20.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-18"><span class="post-toc-number">20.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题64：求1-2-…-n"><span class="post-toc-number">21.</span> <span class="post-toc-text">面试题64：求1+2+…+n</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-19"><span class="post-toc-number">21.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-19"><span class="post-toc-number">21.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题65：不用加减乘除做加法"><span class="post-toc-number">22.</span> <span class="post-toc-text">面试题65：不用加减乘除做加法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-20"><span class="post-toc-number">22.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-20"><span class="post-toc-number">22.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题66：构建乘积数组"><span class="post-toc-number">23.</span> <span class="post-toc-text">面试题66：构建乘积数组</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-21"><span class="post-toc-number">23.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-21"><span class="post-toc-number">23.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题67：把字符串转换成整数"><span class="post-toc-number">24.</span> <span class="post-toc-text">面试题67：把字符串转换成整数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-22"><span class="post-toc-number">24.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-22"><span class="post-toc-number">24.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题68-1：二叉搜索树的最近公共祖先"><span class="post-toc-number">25.</span> <span class="post-toc-text">面试题68-1：二叉搜索树的最近公共祖先</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-23"><span class="post-toc-number">25.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-23"><span class="post-toc-number">25.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#面试题68-2：二叉树的最近公共祖先"><span class="post-toc-number">26.</span> <span class="post-toc-text">面试题68-2：二叉树的最近公共祖先</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#题目-24"><span class="post-toc-number">26.1.</span> <span class="post-toc-text">题目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析-24"><span class="post-toc-number">26.2.</span> <span class="post-toc-text">分析</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-sword-finger-offer-notes-part-three"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">《剑指offer第二版》阅读笔记（三）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-02-21 13:02:22" datetime="2020-02-21T05:02:22.000Z"  itemprop="datePublished">2020-02-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>《剑指offer第二版》阅读笔记最后一个部分，记录了书中面试题51到最后的部分。</p>
+<a id="more"></a>
+
+<h2 id="系列文章"><a href="#系列文章" class="headerlink" title="系列文章"></a>系列文章</h2><ul>
+<li><a href="/2020/02/19/sword-finger-offer-notes/" title="《剑指offer第二版》阅读笔记（一）">《剑指offer第二版》阅读笔记（一）</a></li>
+<li><a href="/2020/02/20/sword-finger-offer-notes-part-two/" title="《剑指offer第二版》阅读笔记（二）">《剑指offer第二版》阅读笔记（二）</a></li>
+<li><a href="/2020/02/21/sword-finger-offer-notes-part-three/" title="《剑指offer第二版》阅读笔记（三）">《剑指offer第二版》阅读笔记（三）</a>
+
+</li>
+</ul>
+<h2 id="面试题51：数组中的逆序对"><a href="#面试题51：数组中的逆序对" class="headerlink" title="面试题51：数组中的逆序对"></a>面试题51：数组中的逆序对</h2><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [7,5,6,4]</span><br><span class="line">输出: 5</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>暴力法的时间复杂度为$O(n^2)$，不可取。这里我们用到了一个重要的知识点：<strong>逆序对是归并排序的副产物。</strong> 在归并排序的一次<code>merge</code>操作中，如果右边的某元素大于左边，那么该元素便会产生一定数量的逆序对，不断的递归统计，便能够得到最终结果。因此我们直接复用归并排序的代码，只是在条件<code>aux[j] &lt; aux[i]</code>时添加了一句更新逆序对的操作：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] aux;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reversePairs</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        aux = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">        sort(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 将数组arr[lo..hi]排序</span></span><br><span class="line">        <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">        sort(arr, lo, mid);</span><br><span class="line">        sort(arr, mid + <span class="number">1</span>, hi);</span><br><span class="line">        merge(arr, lo, mid, hi);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> lo, <span class="keyword">int</span> mid, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 将arr[lo..mid]和arr[mid+1..hi]归并</span></span><br><span class="line">        <span class="keyword">int</span> i = lo, j = mid + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将arr[lo..hi]复制到aux[lo..hi]</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = lo; k &lt;= hi; k++)</span><br><span class="line">            aux[k] = arr[k];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = lo; k &lt;= hi; k++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; mid) arr[k] = aux[j++];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (j &gt; hi) arr[k] = aux[i++];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (aux[j] &lt; aux[i]) &#123;</span><br><span class="line">                count += mid - i + <span class="number">1</span>;  <span class="comment">// aux[i] &gt; aux[j]，说明 arr[i...mid] 都大于 arr[j]</span></span><br><span class="line">                arr[k] = aux[j++];</span><br><span class="line">            &#125; <span class="keyword">else</span> arr[k] = aux[i++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题52：两个链表的第一个公共节点"><a href="#面试题52：两个链表的第一个公共节点" class="headerlink" title="面试题52：两个链表的第一个公共节点"></a>面试题52：两个链表的第一个公共节点</h2><h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h3><p>输入两个链表，找出它们的第一个公共节点。</p>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>很容易想到的一种思路是先求出两个链表的长度<code>n1, n2</code>，假设<code>n1 &gt;= n2</code>，然后求出长度差<code>n1-n2</code>，最后利用快慢指针，让快指针在较长的链表先移动<code>n1-n2</code>步，然后快慢指针一起移动，如果两个链表有公共部分，两个指针会在同一时刻达到相同位置，因此可以找到第一个公共节点。</p>
+<p>还有一种想法不需要求链表长度差值：当两个链表<code>l1, l2</code>有公共节点时，可以证明对于拼接后的链表<code>l1-&gt;l2</code>以及<code>l2-&gt;l1</code>会在同一时间达到第一个公共节点，相关代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">getIntersectionNode</span><span class="params">(ListNode headA, ListNode headB)</span> </span>&#123;</span><br><span class="line">        ListNode a = headA, b = headB;</span><br><span class="line">        <span class="keyword">while</span> (a != b) &#123;</span><br><span class="line">            a = a == <span class="keyword">null</span> ? headB : a.next;</span><br><span class="line">            b = b == <span class="keyword">null</span> ? headA : b.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题53-1：数字在排序数组中出现的次数"><a href="#面试题53-1：数字在排序数组中出现的次数" class="headerlink" title="面试题53-1：数字在排序数组中出现的次数"></a>面试题53-1：数字在排序数组中出现的次数</h2><h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h3><p>统计一个数字在排序数组中出现的次数。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: nums &#x3D; [5,7,7,8,8,10], target &#x3D; 8</span><br><span class="line">输出: 2</span><br><span class="line"></span><br><span class="line">输入: nums &#x3D; [5,7,7,8,8,10], target &#x3D; 6</span><br><span class="line">输出: 0</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h3><p>需要注意的是数组已经<strong>排序</strong>，所以我们可以使用两次<code>二分查找</code>，第一次查找<code>target</code>起始位置，第二次查找<code>target</code>结束位置：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 查找target起始位置</span></span><br><span class="line">        <span class="keyword">int</span> lo = <span class="number">0</span>, hi = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">                lo = mid + <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                hi = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (nums[lo] != target) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> startIdx = lo;</span><br><span class="line">        <span class="comment">// 查找target结束位置</span></span><br><span class="line">        hi = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = lo + (hi - lo + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">                hi = mid - <span class="number">1</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                lo = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> lo - startIdx + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码中有几个要注意的点，一是循环条件是<code>lo &lt; hi</code>，其中没有等号，这样循环结束的时候一定有<code>lo == hi</code>，二是<code>lo+(hi-lo)/2</code>会偏向于取左边，<code>lo+(hi-lo+1)/2</code>则偏向于取右边，最后边界更新时是哪一边等于<code>mid</code>，哪一边等于<code>mid-1</code>或<code>mid+1</code>需要考虑清楚，如果觉得麻烦可以拆成3个部分进行处理，例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">    lo = mid + <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    hi = mid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>等价于</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (nums[mid] &lt; target) &#123;</span><br><span class="line">    lo = mid + <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[mid] &gt; target) &#123;</span><br><span class="line">    hi = mid - <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    hi = mid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题53-2：0～n-1中缺失的数字"><a href="#面试题53-2：0～n-1中缺失的数字" class="headerlink" title="面试题53-2：0～n-1中缺失的数字"></a>面试题53-2：0～n-1中缺失的数字</h2><h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h3><p>一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。</p>
+<h3 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h3><p>直接<code>二分查找</code>最后一个满足<code>nums[i] = i</code>的位置，然后处理一些小细节即可：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> lo = <span class="number">0</span>, hi = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = lo + (hi - lo + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] == mid) &#123;</span><br><span class="line">                lo = mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                hi = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[lo] == lo ? lo + <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题54：二叉搜索树的第k大节点"><a href="#面试题54：二叉搜索树的第k大节点" class="headerlink" title="面试题54：二叉搜索树的第k大节点"></a>面试题54：二叉搜索树的第k大节点</h2><h3 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h3><p>给定一棵二叉搜索树，请找出其中第k大的节点。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: root &#x3D; [5,3,6,2,4,null,null,1], k &#x3D; 3</span><br><span class="line">       5</span><br><span class="line">      &#x2F; \</span><br><span class="line">     3   6</span><br><span class="line">    &#x2F; \</span><br><span class="line">   2   4</span><br><span class="line">  &#x2F;</span><br><span class="line"> 1</span><br><span class="line">输出: 4</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析-4"><a href="#分析-4" class="headerlink" title="分析"></a>分析</h3><p>这是一棵<strong>二叉搜索树</strong>，我们有如下结论：按照<code>left-&gt;root-&gt;right</code>进行遍历时（即中序遍历）可以得到<code>递增序列</code>，按照<code>right-&gt;root-&gt;left</code>进行遍历时（即逆中序遍历）可以得到<code>递减序列</code>。</p>
+<p>这一题需要返回第<code>k</code>大的节点，那么我们可以选择遍历<code>right-&gt;root-&gt;left</code>，直到得到第<code>k</code>个元素即为所求，相关代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">kthLargest</span><span class="params">(TreeNode root, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        TreeNode cur = root;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (cur != <span class="keyword">null</span> || !stack.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span> (cur != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.push(cur);</span><br><span class="line">                cur = cur.right;</span><br><span class="line">            &#125;</span><br><span class="line">            cur = stack.pop();</span><br><span class="line">            <span class="keyword">if</span> (++count == k) <span class="keyword">return</span> cur.val;</span><br><span class="line">            cur = cur.left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题55-1：二叉树的深度"><a href="#面试题55-1：二叉树的深度" class="headerlink" title="面试题55-1：二叉树的深度"></a>面试题55-1：二叉树的深度</h2><h3 id="题目-5"><a href="#题目-5" class="headerlink" title="题目"></a>题目</h3><p>输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。</p>
+<h3 id="分析-5"><a href="#分析-5" class="headerlink" title="分析"></a>分析</h3><p>这种树的问题直接递归，当前节点为空时返回深度 0，否则当前节点的深度为左子树和右子树中的较大值加上 1。代码非常简洁：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + Math.max(maxDepth(root.left), maxDepth(root.right));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题55-2：平衡二叉树"><a href="#面试题55-2：平衡二叉树" class="headerlink" title="面试题55-2：平衡二叉树"></a>面试题55-2：平衡二叉树</h2><h3 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h3><p>输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。</p>
+<h3 id="分析-6"><a href="#分析-6" class="headerlink" title="分析"></a>分析</h3><p>递归进行判断即可：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> depth(root) != -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">depth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = depth(root.left);</span><br><span class="line">        <span class="keyword">int</span> right = depth(root.right);</span><br><span class="line">        <span class="keyword">if</span> (left == -<span class="number">1</span> || right == -<span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (left - right &gt; <span class="number">1</span> || right - left &gt; <span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> Math.max(left, right) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>递归的思想不需要再说，上面代码值得注意的是巧用了<code>-1</code>来当做布朗值使用，其实也可以使用一个新的成员变量<code>isBalanced</code>的常规解法，代码贴出来可以进行比较：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isBalanced;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        isBalanced = <span class="keyword">true</span>;</span><br><span class="line">        depth(root);</span><br><span class="line">        <span class="keyword">return</span> isBalanced;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">depth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span> || !isBalanced) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> left = depth(root.left);</span><br><span class="line">        <span class="keyword">int</span> right = depth(root.right);</span><br><span class="line">        <span class="keyword">if</span> (Math.abs(left - right) &gt; <span class="number">1</span>)</span><br><span class="line">            isBalanced = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + Math.max(left, right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题56-1：数组中只出现一次的两个数字"><a href="#面试题56-1：数组中只出现一次的两个数字" class="headerlink" title="面试题56-1：数组中只出现一次的两个数字"></a>面试题56-1：数组中只出现一次的两个数字</h2><h3 id="题目-7"><a href="#题目-7" class="headerlink" title="题目"></a>题目</h3><p>一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [4,1,4,6]</span><br><span class="line">输出：[1,6] 或 [6,1]</span><br><span class="line"></span><br><span class="line">输入：nums &#x3D; [1,2,10,4,1,4,3,3]</span><br><span class="line">输出：[2,10] 或 [10,2]</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析-7"><a href="#分析-7" class="headerlink" title="分析"></a>分析</h3><p>我们进行一次全员<code>异或</code>操作，得到的结果就是那两个只出现一次的不同的数字的异或结果了。所以我们现在要做的是能不能将这两个不同的数字分成两组 A 和 B，分组需要满足两个条件：</p>
+<ol>
+<li>两个独特的的数字分成不同组</li>
+<li>相同的数字分成相同组</li>
+</ol>
+<p>这样每一组的数据进行异或即可得到那两个数字。问题的关键点是我们怎么进行分组呢？由于异或的性质是，同一位相同则为 0，不同则为 1，我们将所有数字异或的结果一定不是 0，也就是说至少有一位是 1。</p>
+<p>我们随便取一位，分组的依据就来了，也就是所取的那一位是 0 分成 1 组，那一位是 1 的分成一组。可以证明这样分组是可以满足上述两个条件的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] singleNumbers(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">0</span>, b = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> xor = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums)</span><br><span class="line">            xor ^= num;</span><br><span class="line">        <span class="keyword">int</span> h = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> ((xor &amp; h) == <span class="number">0</span>) &#123;</span><br><span class="line">            h = h &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> ((num &amp; h) == <span class="number">0</span>) &#123;</span><br><span class="line">                a ^= num;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                b ^= num;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;a, b&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题56-2：数组中唯一只出现一次的数字"><a href="#面试题56-2：数组中唯一只出现一次的数字" class="headerlink" title="面试题56-2：数组中唯一只出现一次的数字"></a>面试题56-2：数组中唯一只出现一次的数字</h2><h3 id="题目-8"><a href="#题目-8" class="headerlink" title="题目"></a>题目</h3><p>在一个数组 nums 中除一个数字只出现一次之外，其他数字都出现了三次。请找出那个只出现一次的数字。</p>
+<p>限制：</p>
+<ul>
+<li>1 &lt;= nums.length &lt;= 10000</li>
+<li>1 &lt;= nums[i] &lt; 2^31</li>
+</ul>
+<h3 id="分析-8"><a href="#分析-8" class="headerlink" title="分析"></a>分析</h3><p>如果将题目改为<strong>只有一个数字出现一次，其他都出现两次</strong>，那就非常简单了：我们将整个数组的元素进行异或，由于两个相同的数的异或结果是 0，所以对所有元素进行异或的结果便是那个只出现一次的元素。</p>
+<p>但是现在是<strong>其他数字都出现了三次</strong>，异或操作是抵消不掉的，但是我们还是可以沿用位运算的思路。如果一个数字出现三次，那么它的二进制表示的每一位（0 或 1）也会出现三次，如果把所有出现三次的数字的二进制表示的每一位都分别加起来，那么每一位的和都能被 3 整除。我们把数组中所有的数字的二进制加起来，如果某一位的和能够被 3 整除，那么那个只出现一次的数字的二进制表示中对应的那一位是 0，否则就是 1。对应的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> mask = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">                <span class="keyword">if</span> ((num &amp; mask) &gt; <span class="number">0</span>) count++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (count % <span class="number">3</span> &gt; <span class="number">0</span>) res += mask;</span><br><span class="line">            mask = mask &lt;&lt; <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题57-1：和为s的两个数字"><a href="#面试题57-1：和为s的两个数字" class="headerlink" title="面试题57-1：和为s的两个数字"></a>面试题57-1：和为s的两个数字</h2><h3 id="题目-9"><a href="#题目-9" class="headerlink" title="题目"></a>题目</h3><p>输入一个递增排序的数组和一个数字s，在数组中查找两个数，使得它们的和正好是s。如果有多对数字的和等于s，则输出任意一对即可。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [2,7,11,15], target &#x3D; 9</span><br><span class="line">输出：[2,7] 或者 [7,2]</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析-9"><a href="#分析-9" class="headerlink" title="分析"></a>分析</h3><p>注意是递增序列，所以直接使用首尾指针法即可。</p>
+<h2 id="面试题57-2：和为s的连续正数序列"><a href="#面试题57-2：和为s的连续正数序列" class="headerlink" title="面试题57-2：和为s的连续正数序列"></a>面试题57-2：和为s的连续正数序列</h2><h3 id="题目-10"><a href="#题目-10" class="headerlink" title="题目"></a>题目</h3><p>输入一个正整数 target ，输出所有和为 target 的连续正整数序列（至少含有两个数）。</p>
+<p>序列内的数字由小到大排列，不同序列按照首个数字从小到大排列。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：target &#x3D; 15</span><br><span class="line">输出：[[1,2,3,4,5],[4,5,6],[7,8]]</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析-10"><a href="#分析-10" class="headerlink" title="分析"></a>分析</h3><p>使用<code>滑动窗口</code>的思想，初始化两个指针<code>slow = 0， fast = 1</code>，当窗口内的数据和小于<code>target</code>时，向右不断的移动<code>fast</code>直到维护的窗口内的数据和大于<code>target</code>，然后再不断的向右移动<code>slow</code>指针，直到窗口内的数据和不大于<code>target</code>，其中遇到数据和等于<code>target</code>时写入数据到结果中即可。</p>
+<h2 id="面试题58-1：翻转单词顺序"><a href="#面试题58-1：翻转单词顺序" class="headerlink" title="面试题58-1：翻转单词顺序"></a>面试题58-1：翻转单词顺序</h2><h3 id="题目-11"><a href="#题目-11" class="headerlink" title="题目"></a>题目</h3><p>输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串”I am a student. “，则输出”student. a am I”。</p>
+<h3 id="分析-11"><a href="#分析-11" class="headerlink" title="分析"></a>分析</h3><p>第一种方法是使用<code>s.trim().split(&quot;\\s+&quot;)</code>方法进行切分，然后将得到的字符串数组逆序写入到结果中即可。</p>
+<p>第二种方法是先翻转整个字符串，再对字符串里的每个单词进行翻转，最后清理多余的空格。</p>
+<h2 id="面试题58-2：左旋转字符串"><a href="#面试题58-2：左旋转字符串" class="headerlink" title="面试题58-2：左旋转字符串"></a>面试题58-2：左旋转字符串</h2><h3 id="题目-12"><a href="#题目-12" class="headerlink" title="题目"></a>题目</h3><p>字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串”abcdefg”和数字2，该函数将返回左旋转两位得到的结果”cdefgab”。</p>
+<h3 id="分析-12"><a href="#分析-12" class="headerlink" title="分析"></a>分析</h3><p>第一种方法是找到切分点，得到<code>str1</code>和<code>str2</code>，然后将它们反着拼接起来，即<code>str2 + str1</code>。</p>
+<p>第二种方法是进行3次翻转：先翻转整个字符串，然后找到切分点，然后对<code>str1</code>和<code>str2</code>再进行翻转，例如<code>abcdefg -&gt; gfedcba -&gt; cdefgab</code>。</p>
+<h2 id="面试题59-1：滑动窗口的最大值"><a href="#面试题59-1：滑动窗口的最大值" class="headerlink" title="面试题59-1：滑动窗口的最大值"></a>面试题59-1：滑动窗口的最大值</h2><h3 id="题目-13"><a href="#题目-13" class="headerlink" title="题目"></a>题目</h3><p>给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: nums &#x3D; [1,3,-1,-3,5,3,6,7], 和 k &#x3D; 3</span><br><span class="line">输出: [3,3,5,5,6,7]</span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">  滑动窗口的位置                最大值</span><br><span class="line">---------------               -----</span><br><span class="line">[1  3  -1] -3  5  3  6  7       3</span><br><span class="line"> 1 [3  -1  -3] 5  3  6  7       3</span><br><span class="line"> 1  3 [-1  -3  5] 3  6  7       5</span><br><span class="line"> 1  3  -1 [-3  5  3] 6  7       5</span><br><span class="line"> 1  3  -1  -3 [5  3  6] 7       6</span><br><span class="line"> 1  3  -1  -3  5 [3  6  7]      7</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析-13"><a href="#分析-13" class="headerlink" title="分析"></a>分析</h3><p>直接使用暴力法的时间复杂度为$O(k(n-k))$，其实还是可以接受的。但是当<code>k</code>约为<code>n/2</code>时时间复杂度退化到$O(n^2)$。</p>
+<p>其中主要的性能浪费在查找范围为<code>k</code>的数据的最大值，我们可以使用一个容量为<code>k</code>的<code>优先队列</code>，也就是<code>大顶堆</code>来进行优化。这样时间复杂度可以优化到$O(n \log k)$。</p>
+<p>最后，可以可以使用下一题“队列的最大值”中实现的<code>MaxQueue</code>。<code>MaxQueue</code>的插入、删除以及寻找最大值的操作时间复杂度均为$O(1)$，因此用<code>MaxQueue</code>作为容器可以使得整体的算法复杂度降低为$O(n)$。</p>
+<h2 id="面试题59-2：队列的最大值"><a href="#面试题59-2：队列的最大值" class="headerlink" title="面试题59-2：队列的最大值"></a>面试题59-2：队列的最大值</h2><h3 id="题目-14"><a href="#题目-14" class="headerlink" title="题目"></a>题目</h3><p>请定义一个队列并实现函数 max_value 得到队列里的最大值，要求函数max_value、push_back 和 pop_front 的时间复杂度都是O(1)。</p>
+<p>若队列为空，pop_front 和 max_value 需要返回 -1。</p>
+<h3 id="分析-14"><a href="#分析-14" class="headerlink" title="分析"></a>分析</h3><p>思路：用两个队列来完成任务：一个队列保存正常元素，<strong>另一个双向队列保存单调递减的元素。</strong></p>
+<p>入栈时，第一个队列正常入栈；<strong>第二个队列是递减队列</strong>，所以需要与之前的比较，从尾部把小于当前value的全部删除（因为用不到了）。出栈时，第一个队列正常出栈；第二个队列的头部与出栈的值作比较，如果相同，那么一起出栈。具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaxQueue</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Integer&gt; data;</span><br><span class="line">    <span class="keyword">private</span> Deque&lt;Integer&gt; maxQueue;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MaxQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        data = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        maxQueue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">max_value</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (data.isEmpty()) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> maxQueue.peek();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push_back</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        data.offer(value);</span><br><span class="line">        <span class="keyword">while</span> (!maxQueue.isEmpty() &amp;&amp; value &gt; maxQueue.peekLast()) &#123;</span><br><span class="line">            maxQueue.pollLast();</span><br><span class="line">        &#125;</span><br><span class="line">        maxQueue.offer(value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop_front</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (data.isEmpty()) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = data.poll();</span><br><span class="line">        <span class="keyword">if</span> (ans == maxQueue.peek()) maxQueue.poll();</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题60：n个骰子的点数"><a href="#面试题60：n个骰子的点数" class="headerlink" title="面试题60：n个骰子的点数"></a>面试题60：n个骰子的点数</h2><h3 id="题目-15"><a href="#题目-15" class="headerlink" title="题目"></a>题目</h3><p>把n个骰子扔在地上，所有骰子朝上一面的点数之和为s。输入n，打印出s的所有可能的值出现的概率。</p>
+<p>你需要用一个浮点数数组返回答案，其中第 i 个元素代表这 n 个骰子所能掷出的点数集合中第 i 小的那个的概率。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: 1</span><br><span class="line">输出: [0.16667,0.16667,0.16667,0.16667,0.16667,0.16667]</span><br><span class="line"></span><br><span class="line">输入: 2</span><br><span class="line">输出: [0.02778,0.05556,0.08333,0.11111,0.13889,0.16667,0.13889,0.11111,0.08333,0.05556,0.02778]</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析-15"><a href="#分析-15" class="headerlink" title="分析"></a>分析</h3><p>动态规划题。假设<code>f(i, j)</code>代表<code>i</code>个骰子的点数之和为<code>j</code>的个数，有递推公式<code>f(i, j) = f(i-1, j-1) + f(i-1, j-2) + ... + f(i-1, j-6)</code>，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">double</span>[] twoSum(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n][<span class="number">6</span> * n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">6</span>; i++) dp[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> left = i + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> right = <span class="number">6</span> * i + <span class="number">6</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = left; j &lt;= right; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt; j &amp;&amp; k &lt;= <span class="number">6</span>; k++) &#123;</span><br><span class="line">                    dp[i][j] += dp[i - <span class="number">1</span>][j - k];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">double</span> count = Math.pow(<span class="number">6</span>, n);</span><br><span class="line">        <span class="keyword">int</span> left = n, right = <span class="number">6</span> * n;</span><br><span class="line">        <span class="keyword">double</span>[] res = <span class="keyword">new</span> <span class="keyword">double</span>[right - left + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &lt;= right; i++) &#123;</span><br><span class="line">            res[i - left] = dp[n - <span class="number">1</span>][i] / count;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题61：扑克牌中的顺子"><a href="#面试题61：扑克牌中的顺子" class="headerlink" title="面试题61：扑克牌中的顺子"></a>面试题61：扑克牌中的顺子</h2><h3 id="题目-16"><a href="#题目-16" class="headerlink" title="题目"></a>题目</h3><p>从扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张牌是不是连续的。2～10为数字本身，A为1，J为11，Q为12，K为13，而大、小王为 0 ，可以看成任意数字。A 不能视为 14。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [1,2,3,4,5]</span><br><span class="line">输出: True</span><br><span class="line"></span><br><span class="line">输入: [0,0,1,2,5]</span><br><span class="line">输出: True</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析-16"><a href="#分析-16" class="headerlink" title="分析"></a>分析</h3><p>先对数组进行排序，利用每一张大小王可以填补一个空缺，遍历数组统计<code>0</code>的数目，最后，在剩余的牌中检测是否可以借助一定数量的大小王（即任意牌）凑成顺子，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isStraight</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num == <span class="number">0</span>) count++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = count; i &lt; nums.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == nums[i + <span class="number">1</span>]) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            count -= nums[i + <span class="number">1</span>] - nums[i] - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count &gt;= <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题62：圆圈中最后剩下的数字"><a href="#面试题62：圆圈中最后剩下的数字" class="headerlink" title="面试题62：圆圈中最后剩下的数字"></a>面试题62：圆圈中最后剩下的数字</h2><h3 id="题目-17"><a href="#题目-17" class="headerlink" title="题目"></a>题目</h3><p>0,1,,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。</p>
+<p>例如，0、1、2、3、4这5个数字组成一个圆圈，从数字0开始每次删除第3个数字，则删除的前4个数字依次是2、0、4、1，因此最后剩下的数字是3。</p>
+<h3 id="分析-17"><a href="#分析-17" class="headerlink" title="分析"></a>分析</h3><p>此题就是有名的<code>约瑟夫环</code>问题。通常有两种解法，第一种方法是用环装链表链表模拟模拟圆圈的经典解法，第二种方法是分析每次被删除的数字的规律并直接计算出圆圈中最后剩下的数字。</p>
+<p>对于第一种方法，在java中可以使用<code>数组</code>来模拟，当某个位置被删除时将其置为<code>-1</code>，这样时间复杂度为$O(mn)$；当然也可以使用<code>链表</code>或者<code>队列</code>，经过计算很容易得出时间复杂度仍然是$O(mn)$</p>
+<p>对于第二种的数学方法，我们定义一个关于<code>n</code>和<code>m</code>的方程<code>f(n, m)</code>，表示每次在<code>n</code>个数字<code>0, 1, 2, ..., n-1</code>中删除第<code>m</code>个数字最后剩下的数字，需要费点力气来找规律，这里直接给出答案：</p>
+<ul>
+<li><code>f(n, m) = 0, n = 1</code></li>
+<li><code>f(n, m) = [f(n - 1, m) + m] % n, n &gt; 1</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> (lastRemaining(n - <span class="number">1</span>, m) + m) % n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题63：股票的最大利润"><a href="#面试题63：股票的最大利润" class="headerlink" title="面试题63：股票的最大利润"></a>面试题63：股票的最大利润</h2><h3 id="题目-18"><a href="#题目-18" class="headerlink" title="题目"></a>题目</h3><p>假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [7,1,5,3,6,4]</span><br><span class="line">输出: 5</span><br><span class="line">解释: 在第 2 天（股票价格 &#x3D; 1）的时候买入，在第 5 天（股票价格 &#x3D; 6）的时候卖出，最大利润 &#x3D; 6-1 &#x3D; 5 。</span><br><span class="line">     注意利润不能是 7-1 &#x3D; 6, 因为卖出价格需要大于买入价格。</span><br></pre></td></tr></table></figure>
+
+<h3 id="分析-18"><a href="#分析-18" class="headerlink" title="分析"></a>分析</h3><p>股票的利润来源于买入和卖出的价格差，当我们在第<code>i</code>天想要卖出时，那么应该在第<code>1~i-1</code>天中最低的价格买入，因此利用一个变量来表示到目前元素前的最小值，便可以得到在第<code>i</code>天卖出时的最大利润，进而便知道了全局最大利润：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (prices == <span class="keyword">null</span> || prices.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> lastMin = prices[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">            max = Math.max(max, prices[i] - lastMin);</span><br><span class="line">            lastMin = Math.min(lastMin, prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题64：求1-2-…-n"><a href="#面试题64：求1-2-…-n" class="headerlink" title="面试题64：求1+2+…+n"></a>面试题64：求1+2+…+n</h2><h3 id="题目-19"><a href="#题目-19" class="headerlink" title="题目"></a>题目</h3><p>求 1+2+…+n ，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。</p>
+<h3 id="分析-19"><a href="#分析-19" class="headerlink" title="分析"></a>分析</h3><p>使用递归解法最重要的是指定返回条件，但是本题无法直接使用<code>if</code>语句来指定返回条件。</p>
+<p><strong>条件与&amp;&amp;具有短路原则，即在第一个条件语句为false的情况下不会去执行第二个条件语句。</strong> 利用这一特性，将递归的返回条件取非然后作为<code>&amp;&amp;</code>的第一个条件语句，递归的主体转换为第二个条件语句，那么当递归的返回条件为true的情况下就不会执行递归的主体部分，递归返回。</p>
+<p>本题的递归返回条件为 <code>n &lt;= 0</code>，取非后就是 <code>n &gt; 0</code>；递归的主体部分为<code>n += sumNums(n - 1)</code>，转换为条件语句后就是<code>(n += sumNums(n-1)) &gt; 0</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumNums</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> b = n &gt; <span class="number">0</span> &amp;&amp; (n += sumNums(n - <span class="number">1</span>)) &gt; <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题65：不用加减乘除做加法"><a href="#面试题65：不用加减乘除做加法" class="headerlink" title="面试题65：不用加减乘除做加法"></a>面试题65：不用加减乘除做加法</h2><h3 id="题目-20"><a href="#题目-20" class="headerlink" title="题目"></a>题目</h3><p>写一个函数，求两个整数之和，要求在函数体内不得使用 “+”、“-”、“*”、“/” 四则运算符号。</p>
+<h3 id="分析-20"><a href="#分析-20" class="headerlink" title="分析"></a>分析</h3><p>四则运算不能使用了，我们还有<code>位运算</code>。<strong>a ^ b 表示没有考虑进位的情况下两数的和，(a &amp; b) &lt;&lt; 1 就是进位。</strong> 所以<code>a + b = (a ^ b) + ((a &amp; b) &lt;&lt; 1)</code>，不断进行该步骤，直到进位为 0，相关代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (a != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = a ^ b;</span><br><span class="line">            a = (a &amp; b) &lt;&lt; <span class="number">1</span>;</span><br><span class="line">            b = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题66：构建乘积数组"><a href="#面试题66：构建乘积数组" class="headerlink" title="面试题66：构建乘积数组"></a>面试题66：构建乘积数组</h2><h3 id="题目-21"><a href="#题目-21" class="headerlink" title="题目"></a>题目</h3><p>给定一个数组<code>A[0,1,…,n-1]</code>，请构建一个数组<code>B[0,1,…,n-1]</code>，其中<code>B</code>中的元素<code>B[i]=A[0]×A[1]×…×A[i-1]×A[i+1]×…×A[n-1]</code>。不能使用除法。</p>
+<h3 id="分析-21"><a href="#分析-21" class="headerlink" title="分析"></a>分析</h3><p>题目中说明不能使用除法，可以简单思考一下如果能使用除法应该怎么做？我们可以先将所有的数组<code>A</code>的所有乘积求出来：<code>C = A[0] * A[1] * ... * A[n-1]</code>，此时可以得到<code>B[i] = C / A[i]</code>，但是需要注意的是数组<code>A</code>中可能会有元素为 0，需要额外处理。</p>
+<p>现在不能使用除法，应该如何思考呢？我们可以将<code>B[i]</code>分成<code>A[0]*A[1]*...*A[i-1]</code>和<code>A[i+1]*A[i+2]*...*A[n-1]</code>两部分，所以可以：</p>
+<ol>
+<li>从左往右遍历累乘，结果保存在数组<code>res</code>中，此时<code>res[i]</code>表示<code>A[i]</code>左边所有元素的乘积</li>
+<li>然后从右往左遍历累乘，获取<code>A[i]</code>右边所有元素的乘积</li>
+<li>两边遍历之后得到的<code>res</code>，就是最终结果</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] constructArr(<span class="keyword">int</span>[] a) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a == <span class="keyword">null</span> || a.length == <span class="number">0</span>) <span class="keyword">return</span> a;</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[a.length];</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">            res[i] = left;</span><br><span class="line">            left *= a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = a.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            res[i] *= right;</span><br><span class="line">            right *= a[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题67：把字符串转换成整数"><a href="#面试题67：把字符串转换成整数" class="headerlink" title="面试题67：把字符串转换成整数"></a>面试题67：把字符串转换成整数</h2><h3 id="题目-22"><a href="#题目-22" class="headerlink" title="题目"></a>题目</h3><p>写一个函数 StrToInt，实现把字符串转换成整数这个功能。不能使用 atoi 或者其他类似的库函数。</p>
+<h3 id="分析-22"><a href="#分析-22" class="headerlink" title="分析"></a>分析</h3><p>这类题主要是处理一些特殊问题，锻炼处理异常情况的能力，在这里就不贴代码了。</p>
+<h2 id="面试题68-1：二叉搜索树的最近公共祖先"><a href="#面试题68-1：二叉搜索树的最近公共祖先" class="headerlink" title="面试题68-1：二叉搜索树的最近公共祖先"></a>面试题68-1：二叉搜索树的最近公共祖先</h2><h3 id="题目-23"><a href="#题目-23" class="headerlink" title="题目"></a>题目</h3><p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
+<p>例如，给定如下二叉搜索树:  root = [6,2,8,0,4,7,9,null,null,3,5]</p>
+<div align=center>
+<img src="http://image.yingzq.com/img/20200222000234.png" width="300" />
+</div>
+
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 8</span><br><span class="line">输出: 6</span><br><span class="line">解释: 节点 2 和节点 8 的最近公共祖先是 6。</span><br><span class="line"></span><br><span class="line">输入: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5], p &#x3D; 2, q &#x3D; 4</span><br><span class="line">输出: 2</span><br><span class="line">解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。</span><br></pre></td></tr></table></figure>
+
+<p>说明:</p>
+<ul>
+<li>所有节点的值都是唯一的。</li>
+<li>p、q 为不同节点且均存在于给定的二叉搜索树中。</li>
+</ul>
+<h3 id="分析-23"><a href="#分析-23" class="headerlink" title="分析"></a>分析</h3><p>看清题目到底是<code>二叉树</code>还是<code>二叉搜索树</code>，虽然都是递归的结构，但是<code>二叉搜索树</code>的要求更严格些，所以在很多情况下两者的思路不太一样。</p>
+<p>对于二叉搜索树：</p>
+<ol>
+<li>当根节点为空时直接返回</li>
+<li>当<code>p</code>和<code>q</code>的值均小于根节点值时，应该递归的去左子树寻找</li>
+<li>当<code>p</code>和<code>q</code>的值均大于根节点值时，应该递归的去右子树寻找</li>
+<li>当根节点的值在<code>p</code>和<code>p</code>之间时，证明此时根节点即为最近公共祖先。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (root.val &gt; p.val &amp;&amp; root.val &gt; q.val) &#123;</span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.left, p, q);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (root.val &lt; p.val &amp;&amp; root.val &lt; q.val) &#123;</span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.right, p, q);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="面试题68-2：二叉树的最近公共祖先"><a href="#面试题68-2：二叉树的最近公共祖先" class="headerlink" title="面试题68-2：二叉树的最近公共祖先"></a>面试题68-2：二叉树的最近公共祖先</h2><h3 id="题目-24"><a href="#题目-24" class="headerlink" title="题目"></a>题目</h3><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
+<p>例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]</p>
+<div align=center>
+<img src="http://image.yingzq.com/img/20200222000524.png" width="300" />
+</div>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: root &#x3D; [3,5,1,6,2,0,8,null,null,7,4], p &#x3D; 5, q &#x3D; 1</span><br><span class="line">输出: 3</span><br><span class="line">解释: 节点 5 和节点 1 的最近公共祖先是节点 3。</span><br><span class="line"></span><br><span class="line">输入: root &#x3D; [3,5,1,6,2,0,8,null,null,7,4], p &#x3D; 5, q &#x3D; 4</span><br><span class="line">输出: 5</span><br><span class="line">解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。</span><br></pre></td></tr></table></figure>
+
+<p>说明:</p>
+<ul>
+<li>所有节点的值都是唯一的。</li>
+<li>p、q 为不同节点且均存在于给定的二叉树中。</li>
+</ul>
+<h3 id="分析-24"><a href="#分析-24" class="headerlink" title="分析"></a>分析</h3><p>对于二叉树，节点值的相对大小便没有意义了，我们需要在左右子树中查找是否存在<code>p</code>或者<code>p</code>，如果<code>p</code>和<code>q</code>分别在两个子树中，那么就说明根节点就是最低公共祖先。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span> || root == p || root == q) <span class="keyword">return</span> root;</span><br><span class="line">        TreeNode left = lowestCommonAncestor(root.left, p, q);</span><br><span class="line">        TreeNode right = lowestCommonAncestor(root.right, p, q);</span><br><span class="line">        <span class="keyword">if</span> (left != <span class="keyword">null</span> &amp;&amp; right != <span class="keyword">null</span>) <span class="keyword">return</span> root;</span><br><span class="line">        <span class="keyword">return</span> left == <span class="keyword">null</span> ? right : left;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-02-21T17:02:48.605Z" itemprop="dateUpdated">2020-02-22 01:02:48</time>
+</span><br>
+
+
+        
+        若有疑问或者本人有写的不对的地方, 欢迎留言反馈, 非常感谢您的阅读~
+        
+    </div>
+    
+    <footer>
+        <a href="http://www.yingzq.com">
+            <img src="/img/avatar.jpg" alt="应子强">
+            应子强
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数据结构与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="tag">阅读笔记</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/&title=《《剑指offer第二版》阅读笔记（三）》 — yingzq's Blog&pic=http://www.yingzq.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/&title=《《剑指offer第二版》阅读笔记（三）》 — yingzq's Blog&source=《剑指offer第二版》阅读笔记最后一个部分，记录了书中面试题51到最后的部分。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《剑指offer第二版》阅读笔记（三）》 — yingzq's Blog&url=http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/&via=http://www.yingzq.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/02/20/sword-finger-offer-notes-part-two/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">《剑指offer第二版》阅读笔记（二）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'true' == 'true',
+            appId: "mGqkrgTscxf4JdcqkEHkFCfs-gzGzoHsz",
+            appKey: "PwU9oOfhNnWOKaMaOTqQpiNW",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>应子强 &copy; 2015 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备19041830号</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/&title=《《剑指offer第二版》阅读笔记（三）》 — yingzq's Blog&pic=http://www.yingzq.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/&title=《《剑指offer第二版》阅读笔记（三）》 — yingzq's Blog&source=《剑指offer第二版》阅读笔记最后一个部分，记录了书中面试题51到最后的部分。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《《剑指offer第二版》阅读笔记（三）》 — yingzq's Blog&url=http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/&via=http://www.yingzq.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3ay27jMAwF0P7/T3e2A7RxL19FChytgsSxdbQQZZIfH/H4/G98/f75ylef57+uDTw8PLzB1L+OfNL54/MnPlOf74CHh4d3zXs1ieSa6tJU71CdDx4eHt578p636fwOPRIeHh7e3+IlE33+Pjlw4+Hh4b0/L08N5Jt4kmLYuv9CrgUPDw8v5l1s1tefT+p7eHh4eONCVH5Qnm/ZeVApzBYPDw/vgJdvuFV8r/RVbfmKrsTDw8Nb5SXFp+qt86Wpphiq98HDw8O74OWbb3XjTr6pXpnPpxxb8PDw8GJeHhLyhoBe8iIvhiWzwsPDw7vjPW+1+SF7Nwl7UtnDw8PDW+LNj8L50uRpjuTXaLnx8PDwDni9wJAkbfNdOj9G956Lh4eHd83bKkclh/K8AasXYPDw8PAueNXDa57OqKZx8wUqhAQ8PDy8Y94kddtLUuwWw775Fx4eHt4Bb9L2NCmw5YuVV7jK4QEPDw9v8LbeKy9Vi2fVBEQeeF4+BQ8PD++M12t7midkq8f0PDHxzRsDHh4e3hKvmnSYNJtWt/488IyKYXh4eHhjXrnIFKRTJ8fxfCblnjI8PDy8Fq836d6b/laao1B4w8PDwzvgVdMESVPUbqFroSEMDw8P74DXS6H2Er69EJIvejkZgYeHh9fi5QfWyUSrhbTeEjQbz/Dw8PBavF47VLXtILlDHqKipi48PDy8M1518/2Mx2hy84GHh4d3Btua6O80IkTBAw8PD++At7XHztPBvaP5L4UQPDw8vHGKtpqo3Z1DOWzg4eHhnfGSBG71aJs3BOxGNjw8PLx35iVlsF6SIj+4/7DceHh4eG/Aq27oebtAEgzKZTM8PDy8M9686JWEkPzpybIWAgMeHh7eKq/8el/kTTb36qF8VN/Dw8PD+3n8AzSTK/CJGJrJAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '快回来练习bug!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'yingzq's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

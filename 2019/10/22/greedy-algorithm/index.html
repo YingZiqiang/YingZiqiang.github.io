@@ -21,15 +21,15 @@
     
     
     <meta name="keywords" content="数据结构与算法,Java,算法设计技巧,LeetCode">
-    <meta name="description" content="简介贪心算法，又名贪婪算法，是在寻找最优解问题时的常用方法。贪心算法分阶段地工作，在每一个阶段，选取当前状态下最好或最优的的选择，而不考虑将来的后果。通常，这意味着选择的是某个局部最优。这种 “眼下能够拿到的就拿” 的策略也正是贪心算法名称的由来，就好像一个贪婪的人，他事事都想要眼前看到最好的那个，看不到长远的东西，也不为最终的结果和将来着想，贪图眼前局部的利益最大化，有点走一步看一步的感觉。 当">
+    <meta name="description" content="贪心算法，又名贪婪算法，是在寻找最优解问题时的常用方法。贪心算法分阶段地工作，在每一个阶段，选取当前状态下最好或最优的的选择，而不考虑将来的后果。通常，这意味着选择的是某个局部最优。这种 “眼下能够拿到的就拿” 的策略也正是贪心算法名称的由来，就好像一个贪婪的人，他事事都想要眼前看到最好的那个，看不到长远的东西，也不为最终的结果和将来着想，贪图眼前局部的利益最大化，有点走一步看一步的感觉。 当算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="贪心算法">
 <meta property="og:url" content="http://www.yingzq.com/2019/10/22/greedy-algorithm/index.html">
 <meta property="og:site_name" content="yingzq&#39;s Blog">
-<meta property="og:description" content="简介贪心算法，又名贪婪算法，是在寻找最优解问题时的常用方法。贪心算法分阶段地工作，在每一个阶段，选取当前状态下最好或最优的的选择，而不考虑将来的后果。通常，这意味着选择的是某个局部最优。这种 “眼下能够拿到的就拿” 的策略也正是贪心算法名称的由来，就好像一个贪婪的人，他事事都想要眼前看到最好的那个，看不到长远的东西，也不为最终的结果和将来着想，贪图眼前局部的利益最大化，有点走一步看一步的感觉。 当">
+<meta property="og:description" content="贪心算法，又名贪婪算法，是在寻找最优解问题时的常用方法。贪心算法分阶段地工作，在每一个阶段，选取当前状态下最好或最优的的选择，而不考虑将来的后果。通常，这意味着选择的是某个局部最优。这种 “眼下能够拿到的就拿” 的策略也正是贪心算法名称的由来，就好像一个贪婪的人，他事事都想要眼前看到最好的那个，看不到长远的东西，也不为最终的结果和将来着想，贪图眼前局部的利益最大化，有点走一步看一步的感觉。 当算法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-10-22T14:04:30.000Z">
-<meta property="article:modified_time" content="2019-12-25T12:39:25.730Z">
+<meta property="article:modified_time" content="2020-02-20T12:28:31.229Z">
 <meta property="article:author" content="应子强">
 <meta property="article:tag" content="数据结构与算法">
 <meta property="article:tag" content="Java">
@@ -81,6 +81,13 @@
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
                 标签云
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
               </a>
             </li>
         
@@ -146,6 +153,8 @@
 </time>
 
 
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li></ul>
+
             
         </h5>
     </div>
@@ -161,7 +170,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">基本思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例题分析"><span class="post-toc-number">3.</span> <span class="post-toc-text">例题分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分发饼干（LeetCode455-easy）"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">分发饼干（LeetCode455 easy）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#柠檬水找零（LeetCode-860-easy）"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">柠檬水找零（LeetCode 860 easy）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#跳跃游戏（LeetCode-55-medium）"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">跳跃游戏（LeetCode 55 medium）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本思路"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例题分析"><span class="post-toc-number">2.</span> <span class="post-toc-text">例题分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分发饼干（LeetCode455-easy）"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">分发饼干（LeetCode455 easy）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#柠檬水找零（LeetCode-860-easy）"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">柠檬水找零（LeetCode 860 easy）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#跳跃游戏（LeetCode-55-medium）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">跳跃游戏（LeetCode 55 medium）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考文献"><span class="post-toc-number">3.</span> <span class="post-toc-text">参考文献</span></a></li></ol>
         </nav>
     </aside>
 
@@ -175,6 +184,8 @@
             <time class="post-time" title="2019-10-22 22:04:30" datetime="2019-10-22T14:04:30.000Z"  itemprop="datePublished">2019-10-22</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li></ul>
+
 
 
             
@@ -185,7 +196,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>贪心算法，又名贪婪算法，是在寻找最优解问题时的常用方法。贪心算法分阶段地工作，在每一个阶段，选取<strong>当前状态下最好或最优</strong>的的选择，而不考虑将来的后果。通常，这意味着选择的是某个<strong>局部最优</strong>。这种 “眼下能够拿到的就拿” 的策略也正是贪心算法名称的由来，就好像一个贪婪的人，他事事都想要眼前看到最好的那个，看不到长远的东西，也不为最终的结果和将来着想，贪图眼前局部的利益最大化，有点走一步看一步的感觉。</p>
+            <p>贪心算法，又名贪婪算法，是在寻找最优解问题时的常用方法。贪心算法分阶段地工作，在每一个阶段，选取<strong>当前状态下最好或最优</strong>的的选择，而不考虑将来的后果。通常，这意味着选择的是某个<strong>局部最优</strong>。这种 “眼下能够拿到的就拿” 的策略也正是贪心算法名称的由来，就好像一个贪婪的人，他事事都想要眼前看到最好的那个，看不到长远的东西，也不为最终的结果和将来着想，贪图眼前局部的利益最大化，有点走一步看一步的感觉。</p>
 <p>当算法终止时，我们希望<strong>局部最优</strong>等于<strong>全局最优</strong>。如果是这样的话，那么算法就是正确的；否则，算法得到的就是一个次最优解（suboptimal solution）。如果不要求绝对最佳答案，有时候也可以使用简单的贪心算法生成近似的答案，而无需使用产生准确答案所需要的复杂算法。</p>
 <blockquote>
 <p>注：本文我们主要考虑第一种情况，也就是贪心算法能得到最优解的情况</p>
@@ -268,7 +279,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-12-25T12:39:25.730Z" itemprop="dateUpdated">2019-12-25 20:39:25</time>
+    最后更新时间：<time datetime="2020-02-20T12:28:31.229Z" itemprop="dateUpdated">2020-02-20 20:28:31</time>
 </span><br>
 
 
