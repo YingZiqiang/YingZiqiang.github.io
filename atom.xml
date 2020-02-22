@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yingzq.com/"/>
-  <updated>2020-02-22T11:15:33.846Z</updated>
+  <updated>2020-02-21T17:02:48.605Z</updated>
   <id>http://www.yingzq.com/</id>
   
   <author>
@@ -15,21 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>the-development-of-word-embedding</title>
-    <link href="http://www.yingzq.com/2020/02/22/the-development-of-word-embedding/"/>
-    <id>http://www.yingzq.com/2020/02/22/the-development-of-word-embedding/</id>
-    <published>2020-02-22T11:15:33.000Z</published>
-    <updated>2020-02-22T11:15:33.846Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>《剑指offer第二版》阅读笔记（三）</title>
@@ -113,6 +98,27 @@
   </entry>
   
   <entry>
+    <title>回头看词向量的发展（从word2vec、Glove、FastText到ELMo）</title>
+    <link href="http://www.yingzq.com/2020/01/07/the-development-of-word-embedding/"/>
+    <id>http://www.yingzq.com/2020/01/07/the-development-of-word-embedding/</id>
+    <published>2020-01-07T11:15:33.000Z</published>
+    <updated>2020-02-22T11:36:11.637Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="NLP" scheme="http://www.yingzq.com/categories/NLP/"/>
+    
+    
+      <category term="NLP" scheme="http://www.yingzq.com/tags/NLP/"/>
+    
+      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
+    
+  </entry>
+  
+  <entry>
     <title>常见排序算法（归纳分析及java实现）</title>
     <link href="http://www.yingzq.com/2019/12/25/common-sorting-algorithms/"/>
     <id>http://www.yingzq.com/2019/12/25/common-sorting-algorithms/</id>
@@ -162,9 +168,9 @@
     
       <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
     
-      <category term="BERT" scheme="http://www.yingzq.com/tags/BERT/"/>
-    
       <category term="PyTorch" scheme="http://www.yingzq.com/tags/PyTorch/"/>
+    
+      <category term="BERT" scheme="http://www.yingzq.com/tags/BERT/"/>
     
   </entry>
   
