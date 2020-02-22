@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yingzq.com/"/>
-  <updated>2020-02-21T17:02:48.605Z</updated>
+  <updated>2020-02-22T11:15:33.846Z</updated>
   <id>http://www.yingzq.com/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>the-development-of-word-embedding</title>
+    <link href="http://www.yingzq.com/2020/02/22/the-development-of-word-embedding/"/>
+    <id>http://www.yingzq.com/2020/02/22/the-development-of-word-embedding/</id>
+    <published>2020-02-22T11:15:33.000Z</published>
+    <updated>2020-02-22T11:15:33.846Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>《剑指offer第二版》阅读笔记（三）</title>
