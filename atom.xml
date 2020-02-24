@@ -98,27 +98,6 @@
   </entry>
   
   <entry>
-    <title>回头看词向量的发展（从word2vec、Glove、FastText到ELMo）</title>
-    <link href="http://www.yingzq.com/2020/01/07/the-development-of-word-embedding/"/>
-    <id>http://www.yingzq.com/2020/01/07/the-development-of-word-embedding/</id>
-    <published>2020-01-07T11:15:33.000Z</published>
-    <updated>2020-02-22T11:36:11.637Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-      <category term="NLP" scheme="http://www.yingzq.com/categories/NLP/"/>
-    
-    
-      <category term="NLP" scheme="http://www.yingzq.com/tags/NLP/"/>
-    
-      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
-    
-  </entry>
-  
-  <entry>
     <title>常见排序算法（归纳分析及java实现）</title>
     <link href="http://www.yingzq.com/2019/12/25/common-sorting-algorithms/"/>
     <id>http://www.yingzq.com/2019/12/25/common-sorting-algorithms/</id>
@@ -164,9 +143,9 @@
     
       <category term="NLP" scheme="http://www.yingzq.com/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
-    
       <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
+    
+      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
     
       <category term="PyTorch" scheme="http://www.yingzq.com/tags/PyTorch/"/>
     
@@ -196,9 +175,9 @@
     
       <category term="NLP" scheme="http://www.yingzq.com/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
-    
       <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
+    
+      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
     
       <category term="BERT" scheme="http://www.yingzq.com/tags/BERT/"/>
     
