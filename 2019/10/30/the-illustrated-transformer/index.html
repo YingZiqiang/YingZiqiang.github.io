@@ -20,7 +20,7 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="NLP,Transformer,Deep Learning,BERT">
+    <meta name="keywords" content="NLP,Deep Learning,Transformer,BERT">
     <meta name="description" content="Transformer模型来自论文 Attention Is All You Need 。这个模型最初是为了提高机器翻译的效率，它的Self-Attention机制和Position Encoding可以替代RNN。因为RNN是顺序执行的，t时刻没有完成就不能处理t+1时刻，因此很难并行。但是后来发现Self-Attention效果很好，在很多其它的地方也可以使用Transformer模型。这包括">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer图解">
@@ -55,11 +55,11 @@
 <meta property="og:image" content="http://image.yingzq.com/img/20191104204732.png">
 <meta property="og:image" content="http://image.yingzq.com/img/20191104210604.png">
 <meta property="article:published_time" content="2019-10-29T16:23:45.000Z">
-<meta property="article:modified_time" content="2020-02-19T17:43:21.206Z">
+<meta property="article:modified_time" content="2020-03-03T05:27:13.700Z">
 <meta property="article:author" content="应子强">
 <meta property="article:tag" content="NLP">
-<meta property="article:tag" content="Transformer">
 <meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Transformer">
 <meta property="article:tag" content="BERT">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://image.yingzq.com/img/20191103151039.png">
@@ -366,7 +366,7 @@
 <p>图：Self-Attention的矩阵计算步骤二</p>
 </div>
 
-<h2 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h2><p>这篇论文还提出了Multi-Head Attention的概念。其实很简单，前面定义的一组Q、K和V可以让一个词attend to相关的词，我们可以定义多组Q、K和V，它们分别可以关注不同的上下文。计算Q、K和V的过程还是一样，这不过现在变换矩阵从一组$(W_Q,W_K,W_V)$变成了多组$(W_0^Q,W_0^K,W_0^V)$ ，$(W_1^Q,W_1^K,W_1^V)$，…。如下图所示：</p>
+<h2 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h2><p>这篇论文还提出了Multi-Head Attention的概念。其实很简单，前面定义的一组Q、K和V可以让一个词attend to相关的词，我们可以定义多组Q、K和V，它们分别可以关注不同的上下文。计算Q、K和V的过程还是一样，这不过现在变换矩阵从一组$(W^Q,W^K,W^V)$变成了多组$(W_0^Q,W_0^K,W_0^V)$ ，$(W_1^Q,W_1^K,W_1^V)$，…。如下图所示：</p>
 <div align=center>
 <img src="http://image.yingzq.com/img/20191104114652.png" width="600" alt="Multi-Head计算多组Q、K和V" />
 
@@ -452,7 +452,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-02-19T17:43:21.206Z" itemprop="dateUpdated">2020-02-20 01:43:21</time>
+    最后更新时间：<time datetime="2020-03-03T05:27:13.700Z" itemprop="dateUpdated">2020-03-03 13:27:13</time>
 </span><br>
 
 
