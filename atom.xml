@@ -141,9 +141,9 @@
       <category term="Python" scheme="http://www.yingzq.com/categories/Python/"/>
     
     
-      <category term="阅读笔记" scheme="http://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="Python" scheme="http://www.yingzq.com/tags/Python/"/>
+    
+      <category term="阅读笔记" scheme="http://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -168,13 +168,13 @@
     
       <category term="NLP" scheme="http://www.yingzq.com/tags/NLP/"/>
     
-      <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
-    
       <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
     
-      <category term="PyTorch" scheme="http://www.yingzq.com/tags/PyTorch/"/>
+      <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
     
       <category term="BERT" scheme="http://www.yingzq.com/tags/BERT/"/>
+    
+      <category term="PyTorch" scheme="http://www.yingzq.com/tags/PyTorch/"/>
     
   </entry>
   
@@ -200,9 +200,9 @@
     
       <category term="NLP" scheme="http://www.yingzq.com/tags/NLP/"/>
     
-      <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
-    
       <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
+    
+      <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
     
       <category term="BERT" scheme="http://www.yingzq.com/tags/BERT/"/>
     
@@ -232,9 +232,9 @@
     
       <category term="数据结构与算法" scheme="http://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="算法设计技巧" scheme="http://www.yingzq.com/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/"/>
-    
       <category term="Java" scheme="http://www.yingzq.com/tags/Java/"/>
+    
+      <category term="算法设计技巧" scheme="http://www.yingzq.com/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/"/>
     
       <category term="LeetCode" scheme="http://www.yingzq.com/tags/LeetCode/"/>
     
