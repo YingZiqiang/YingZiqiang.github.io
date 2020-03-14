@@ -29,7 +29,7 @@
 <meta property="og:description" content="LeetCode中很多问题是和回溯相关的，例如Subsets, Permutations, Combination Sum, Palindrome Partitioning等等，所以本文借助这些题目提取了一种较为通用的思考模式，或者说代码结构来帮助处理这些回溯的问题。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-14T08:51:58.000Z">
-<meta property="article:modified_time" content="2020-03-14T10:27:16.209Z">
+<meta property="article:modified_time" content="2020-03-14T11:18:01.082Z">
 <meta property="article:author" content="应子强">
 <meta property="article:tag" content="数据结构与算法">
 <meta property="article:tag" content="算法设计技巧">
@@ -170,7 +170,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Subsets（子集）"><span class="post-toc-number">1.</span> <span class="post-toc-text">Subsets（子集）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Subsets-II（子集-II）"><span class="post-toc-number">2.</span> <span class="post-toc-text">Subsets II（子集 II）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Permutations（全排列）"><span class="post-toc-number">3.</span> <span class="post-toc-text">Permutations（全排列）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Permutations-II（全排列-II）"><span class="post-toc-number">4.</span> <span class="post-toc-text">Permutations II（全排列 II）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Combination-Sum（组合总和）"><span class="post-toc-number">5.</span> <span class="post-toc-text">Combination Sum（组合总和）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Combination-Sum-II（组合总和-II）"><span class="post-toc-number">6.</span> <span class="post-toc-text">Combination Sum II（组合总和 II）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Palindrome-Partitioning（分割回文串）"><span class="post-toc-number">7.</span> <span class="post-toc-text">Palindrome Partitioning（分割回文串）</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Subsets（子集）"><span class="post-toc-number">1.</span> <span class="post-toc-text">Subsets（子集）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Subsets-II（子集-II）"><span class="post-toc-number">2.</span> <span class="post-toc-text">Subsets II（子集 II）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Permutations（全排列）"><span class="post-toc-number">3.</span> <span class="post-toc-text">Permutations（全排列）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Permutations-II（全排列-II）"><span class="post-toc-number">4.</span> <span class="post-toc-text">Permutations II（全排列 II）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Combination-Sum（组合总和）"><span class="post-toc-number">5.</span> <span class="post-toc-text">Combination Sum（组合总和）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Combination-Sum-II（组合总和-II）"><span class="post-toc-number">6.</span> <span class="post-toc-text">Combination Sum II（组合总和 II）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Palindrome-Partitioning（分割回文串）"><span class="post-toc-number">7.</span> <span class="post-toc-text">Palindrome Partitioning（分割回文串）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Generate-Parentheses（括号生成）"><span class="post-toc-number">8.</span> <span class="post-toc-text">Generate Parentheses（括号生成）</span></a></li></ol>
         </nav>
     </aside>
 
@@ -304,6 +304,17 @@
 <blockquote>
 <p>注：这段代码中前面关于构建<code>valid数组</code>的部分使用了动态规划，但是并不是本文的重点，只需要知道<code>valid[i][j]</code>表示<strong>字符串中 i 到 j 位置的元素能否构成回文</strong>即可。</p>
 </blockquote>
+<h2 id="Generate-Parentheses（括号生成）"><a href="#Generate-Parentheses（括号生成）" class="headerlink" title="Generate Parentheses（括号生成）"></a>Generate Parentheses（括号生成）</h2><p><strong>链接</strong></p>
+<p><a href="https://leetcode-cn.com/problems/generate-parentheses/" target="_blank" rel="noopener">LeetCode 22题</a></p>
+<p><strong>题目</strong></p>
+<p>给出 n 代表生成括号的对数，请你写出一个函数，使其能够生成所有可能的并且有效的括号组合。</p>
+<p>例如，给出 n = 3，生成结果为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  &quot;((()))&quot;,</span><br><span class="line">  &quot;(()())&quot;,</span><br><span class="line">  &quot;(())()&quot;,</span><br><span class="line">  &quot;()(())&quot;,</span><br><span class="line">  &quot;()()()&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>解答</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        backtrack(res, <span class="keyword">new</span> StringBuilder(), n, n);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(List&lt;String&gt; res, StringBuilder sb, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left &gt; right) <span class="keyword">return</span>;  <span class="comment">// 右括号使用比左括号多，舍去</span></span><br><span class="line">        <span class="keyword">if</span>(left == <span class="number">0</span> &amp;&amp; right == <span class="number">0</span>)&#123;</span><br><span class="line">            res.add(sb.toString());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(left &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            sb.append(<span class="string">'('</span>);</span><br><span class="line">            backtrack(res, sb, left - <span class="number">1</span>, right);</span><br><span class="line">            sb.setLength(sb.length() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(right &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            sb.append(<span class="string">')'</span>);</span><br><span class="line">            backtrack(res, sb, left, right - <span class="number">1</span>);</span><br><span class="line">            sb.setLength(sb.length() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>和前面几题不同的是，这一题似乎没有<code>for循环</code>，这是因为在某个位置<code>k</code>，括号只有两种状态：<code>(</code>或者<code>)</code>，不需要循环，本质是一样的。</p>
 
         </div>
 
@@ -312,7 +323,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-03-14T10:27:16.209Z" itemprop="dateUpdated">2020-03-14 18:27:16</time>
+    最后更新时间：<time datetime="2020-03-14T11:18:01.082Z" itemprop="dateUpdated">2020-03-14 19:18:01</time>
 </span><br>
 
 
