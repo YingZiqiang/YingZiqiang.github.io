@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yingzq.com/"/>
-  <updated>2020-03-17T05:28:51.972Z</updated>
+  <updated>2020-03-21T02:53:37.143Z</updated>
   <id>http://www.yingzq.com/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>the-principle-of-xlnet</title>
+    <link href="http://www.yingzq.com/2020/03/21/the-principle-of-xlnet/"/>
+    <id>http://www.yingzq.com/2020/03/21/the-principle-of-xlnet/</id>
+    <published>2020-03-21T02:53:37.000Z</published>
+    <updated>2020-03-21T02:53:37.143Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>对 “旋转排序数组” 相关问题的解决方法</title>
@@ -196,9 +211,9 @@
       <category term="Python" scheme="http://www.yingzq.com/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://www.yingzq.com/tags/Python/"/>
-    
       <category term="阅读笔记" scheme="http://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="Python" scheme="http://www.yingzq.com/tags/Python/"/>
     
   </entry>
   
