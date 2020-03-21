@@ -223,13 +223,13 @@
     
       <category term="NLP" scheme="http://www.yingzq.com/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
-    
       <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
     
-      <category term="BERT" scheme="http://www.yingzq.com/tags/BERT/"/>
+      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
     
       <category term="PyTorch" scheme="http://www.yingzq.com/tags/PyTorch/"/>
+    
+      <category term="BERT" scheme="http://www.yingzq.com/tags/BERT/"/>
     
   </entry>
   
@@ -255,9 +255,9 @@
     
       <category term="NLP" scheme="http://www.yingzq.com/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
-    
       <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
+    
+      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
     
       <category term="BERT" scheme="http://www.yingzq.com/tags/BERT/"/>
     
