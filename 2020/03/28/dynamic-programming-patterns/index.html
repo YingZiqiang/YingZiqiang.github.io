@@ -29,7 +29,7 @@
 <meta property="og:description" content="动态规划（dynamic programming，简称DP）一直是算法面试中最难的话题之一。DP的本质在于如何完整的刻化状态而又使状态不包含冗余信息，这是比较难的一点；另外，不同的DP问题之间似乎并不能用统一的模式来表示，所以往往在做了一些DP题之后遇到新的DP问题还是束手无策（泛化能力差~）。 本文copy自一篇LeetCode Discuss区大佬对DP模式的总结，原文将DP问题大致分成5种模">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-28T02:27:48.000Z">
-<meta property="article:modified_time" content="2020-03-28T09:22:57.075Z">
+<meta property="article:modified_time" content="2020-03-28T12:48:27.213Z">
 <meta property="article:author" content="应子强">
 <meta property="article:tag" content="数据结构与算法">
 <meta property="article:tag" content="Java">
@@ -209,7 +209,7 @@
 <li>DP on Strings</li>
 <li>Decision Making</li>
 </ul>
-<p>下文分别对这5种模型进行讲解，说明一下，其中 “Statement” 代表 “此类模式问题的一般描述” ，”Approach” 代表 “此类问题的解题套路” ，”Similar Problems” 代表 “与此类模式相关的原题”，本文将给出相应的解答。</p>
+<p>下文分别对这5种模型进行讲解，说明一下，其中 “Statement” 代表 “此类模式问题的一般描述” ，”Approach” 代表 “此类问题的解题套路” ，”Similar Problems” 代表 “与此类模式相关的leetcode原题”，本文将给出相应的解答。</p>
 <h2 id="Minimum-Maximum-Path-to-Reach-a-Target"><a href="#Minimum-Maximum-Path-to-Reach-a-Target" class="headerlink" title="Minimum (Maximum) Path to Reach a Target"></a>Minimum (Maximum) Path to Reach a Target</h2><h3 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h3><p>Given a target find minimum (maximum) cost / path / sum to reach the target.</p>
 <h3 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h3><p>Choose minimum (maximum) path among all possible paths before the current state, then add value for the current state.</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">routes[i] &#x3D; min(routes[i-1], routes[i-2], ... , routes[i-k]) + cost[i]</span><br></pre></td></tr></table></figure>
@@ -291,10 +291,34 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minFallingPathSum</span><span class="params">(<span class="keyword">int</span>[][] A)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span> || A[<span class="number">0</span>].length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> m = A.length, n = A[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">int</span> min = A[i - <span class="number">1</span>][j];</span><br><span class="line">            <span class="keyword">if</span> (j &gt; <span class="number">0</span>) min = Math.min(min, A[i - <span class="number">1</span>][j - <span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">if</span> (j &lt; n - <span class="number">1</span>) min = Math.min(min, A[i - <span class="number">1</span>][j + <span class="number">1</span>]);</span><br><span class="line">            A[i][j] = min + A[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num : A[m - <span class="number">1</span>]) &#123;</span><br><span class="line">        res = Math.min(res, num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="最低票价-Medium"><a href="#最低票价-Medium" class="headerlink" title="最低票价 Medium"></a>最低票价 Medium</h4><p><strong>题目</strong></p>
+<p>在一个火车旅行很受欢迎的国度，你提前一年计划了一些火车旅行。在接下来的一年里，你要旅行的日子将以一个名为 days 的数组给出。每一项是一个从 1 到 365 的整数。</p>
+<p>火车票有三种不同的销售方式：</p>
+<ul>
+<li>一张为期一天的通行证售价为 costs[0] 美元；</li>
+<li>一张为期七天的通行证售价为 costs[1] 美元；</li>
+<li>一张为期三十天的通行证售价为 costs[2] 美元。</li>
+</ul>
+<p>通行证允许数天无限制的旅行。 例如，如果我们在第 2 天获得一张为期 7 天的通行证，那么我们可以连着旅行 7 天：第 2 天、第 3 天、第 4 天、第 5 天、第 6 天、第 7 天和第 8 天。</p>
+<p>返回你想要完成在给定的列表 days 中列出的每一天的旅行所需要的最低消费。</p>
 <p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：days &#x3D; [1,4,6,7,8,20], costs &#x3D; [2,7,15]</span><br><span class="line">输出：11</span><br><span class="line">解释：</span><br><span class="line">例如，这里有一种购买通行证的方法，可以让你完成你的旅行计划：</span><br><span class="line">在第 1 天，你花了 costs[0] &#x3D; $2 买了一张为期 1 天的通行证，它将在第 1 天生效。</span><br><span class="line">在第 3 天，你花了 costs[1] &#x3D; $7 买了一张为期 7 天的通行证，它将在第 3, 4, ..., 9 天生效。</span><br><span class="line">在第 20 天，你花了 costs[0] &#x3D; $2 买了一张为期 1 天的通行证，它将在第 20 天生效。</span><br><span class="line">你总共花了 $11，并完成了你计划的每一天旅行。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li>1 &lt;= days.length &lt;= 365</li>
+<li>1 &lt;= days[i] &lt;= 365</li>
+<li>days 按顺序严格递增</li>
+<li>costs.length == 3</li>
+<li>1 &lt;= costs[i] &lt;= 1000</li>
+</ul>
 <p><strong>分析</strong></p>
+<p>状态转移方程：</p>
+<ul>
+<li>如果 i 不在 days中，<code>dp[i] = dp[i-1]</code></li>
+<li>如果 i 在 days中，<code>dp[i] = min(dp[i-1]+costs[0], dp[i-7]+costs[1], dp[i-30]+costs[2])</code></li>
+</ul>
 <p><strong>Java代码</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mincostTickets</span><span class="params">(<span class="keyword">int</span>[] days, <span class="keyword">int</span>[] costs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lastDay = days[days.length - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">boolean</span>[] dayIncluded = <span class="keyword">new</span> <span class="keyword">boolean</span>[lastDay + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> day : days) dayIncluded[day] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[lastDay + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= lastDay; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!dayIncluded[i]) &#123;</span><br><span class="line">            dp[i] = dp[i - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> min = dp[i - <span class="number">1</span>] + costs[<span class="number">0</span>];</span><br><span class="line">        min = Math.min(min, dp[Math.max(<span class="number">0</span>, i - <span class="number">7</span>)] + costs[<span class="number">1</span>]);</span><br><span class="line">        min = Math.min(min, dp[Math.max(<span class="number">0</span>, i - <span class="number">30</span>)] + costs[<span class="number">2</span>]);</span><br><span class="line">        dp[i] = min;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[lastDay];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="只有两个键的键盘-Medium"><a href="#只有两个键的键盘-Medium" class="headerlink" title="只有两个键的键盘 Medium"></a>只有两个键的键盘 Medium</h4><p><strong>题目</strong></p>
 <p>最初在一个记事本上只有一个字符 ‘A’。你每次可以对这个记事本进行两种操作：</p>
@@ -350,8 +374,23 @@
 <p>(1) S1 + S2  = S<br>(2) S1 - S2 = diff</p>
 <p>==&gt; diff = S - 2 * S2  ==&gt; 最小化diff等价于最大化S2。</p>
 <p>因此我们需要最大化 S2，其中 S2 的范围在0至S/2之间。（其实就是0-1背包问题）</p>
+<p>这里多写一点。首先我们使用一个二维数组<code>dp[i][j]</code>表示如下含义：使用前 i 种已经出现的石头，在背包容量为 j 的情况下，能得到的最大值。我们有如下状态转移方程：</p>
+<ul>
+<li>如果stones[i] &gt; j，证明石头 i 放不下，因此<code>dp[i][j] = dp[i-1][j]</code></li>
+<li>如果stones[i] &lt;= j，此时既可以放石头 i，也可以不放，有<code>dp[i][j] = max(dp[i-1][j], dp[i-1][j-stones[i]] + stones[i])</code></li>
+</ul>
+<p>上述更新过程只和上一行有关，因此我们可以对空间更进一步的优化：只使用一行，也就是使用一维的dp数组在每轮迭代中复用。但是我们注意到更新<code>dp[j]</code>的时候会用到<code>dp[j-stones[i]]</code>，先更新左边的值会出现问题，因此我们可以从右向左更新！</p>
+<p>此时我们有如下状态转移方程：</p>
+<ul>
+<li>如果stones[i] &gt; j，<code>dp[j]不变</code></li>
+<li>如果stones[i] &lt;= j，<code>dp[j] = max(dp[j], dp[j-stones[i]] + stones[i])</code></li>
+</ul>
 <p><strong>Java代码</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>使用二维dp数组的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lastStoneWeightII</span><span class="params">(<span class="keyword">int</span>[] stones)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> stone : stones) sum += stone;</span><br><span class="line">    <span class="keyword">int</span> n = sum / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[stones.length + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= stones.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (stones[i - <span class="number">1</span>] &gt; j) &#123;</span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[i][j] = Math.max(dp[i - <span class="number">1</span>][j], dp[i - <span class="number">1</span>][j - stones[i - <span class="number">1</span>]] + stones[i - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum - <span class="number">2</span> * dp[stones.length][n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用一维dp数组的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lastStoneWeightII</span><span class="params">(<span class="keyword">int</span>[] stones)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> stone : stones) sum += stone;</span><br><span class="line">    <span class="keyword">int</span> n = sum / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> stone : stones) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = n; j &gt;= stone; j--) &#123;</span><br><span class="line">            dp[j] = Math.max(dp[j], dp[j - stone] + stone);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum - <span class="number">2</span> * dp[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Distinct-Ways"><a href="#Distinct-Ways" class="headerlink" title="Distinct Ways"></a>Distinct Ways</h2><h3 id="Statement-1"><a href="#Statement-1" class="headerlink" title="Statement"></a>Statement</h3><p>Given a target find a number of distinct ways to reach the target.</p>
 <h3 id="Approach-1"><a href="#Approach-1" class="headerlink" title="Approach"></a>Approach</h3><p>Sum all possible ways to reach the current state.</p>
@@ -441,7 +480,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-03-28T09:22:57.075Z" itemprop="dateUpdated">2020-03-28 17:22:57</time>
+    最后更新时间：<time datetime="2020-03-28T12:48:27.213Z" itemprop="dateUpdated">2020-03-28 20:48:27</time>
 </span><br>
 
 
