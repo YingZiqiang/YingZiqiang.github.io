@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>论动态规划常见的5种模式 | yingzq&#39;s Blog | 练习bug时长两年半的实习生</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据结构与算法,Java,LeetCode,算法设计技巧">
+    <meta name="description" content="动态规划（dynamic programming，简称DP）一直是算法面试中最难的话题之一。DP的本质在于如何完整的刻化状态而又使状态不包含冗余信息，这是比较难的一点；另外，不同的DP问题之间似乎并不能用统一的模式来表示，所以往往在做了一些DP题之后遇到新的DP问题还是束手无策（泛化能力差~）。 本文copy自一篇LeetCode Discuss区大佬对DP模式的总结，原文将DP问题大致分成5种模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论动态规划常见的5种模式">
+<meta property="og:url" content="http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/index.html">
+<meta property="og:site_name" content="yingzq&#39;s Blog">
+<meta property="og:description" content="动态规划（dynamic programming，简称DP）一直是算法面试中最难的话题之一。DP的本质在于如何完整的刻化状态而又使状态不包含冗余信息，这是比较难的一点；另外，不同的DP问题之间似乎并不能用统一的模式来表示，所以往往在做了一些DP题之后遇到新的DP问题还是束手无策（泛化能力差~）。 本文copy自一篇LeetCode Discuss区大佬对DP模式的总结，原文将DP问题大致分成5种模">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-28T02:27:48.000Z">
+<meta property="article:modified_time" content="2020-03-28T09:22:57.075Z">
+<meta property="article:author" content="应子强">
+<meta property="article:tag" content="数据结构与算法">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法设计技巧">
+<meta name="twitter:card" content="summary">
+    
+        <link rel="alternate" type="application/atom+xml" title="yingzq&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/avatar.jpg">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">应子强</h5>
+          <a href="mailto:yingzq0116@163.com" title="yingzq0116@163.com" class="mail">yingzq0116@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签云
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-info-circle"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/YingZiqiang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">论动态规划常见的5种模式</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">论动态规划常见的5种模式</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2020-03-28T02:27:48.000Z" itemprop="datePublished" class="page-time">
+  2020-03-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Patterns"><span class="post-toc-number">1.</span> <span class="post-toc-text">Patterns</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Minimum-Maximum-Path-to-Reach-a-Target"><span class="post-toc-number">2.</span> <span class="post-toc-text">Minimum (Maximum) Path to Reach a Target</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Statement"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Statement</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Approach"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Approach</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Similar-Problems"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Similar Problems</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用最小花费爬楼梯-Easy"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">使用最小花费爬楼梯 Easy</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#最小路径和-Medium"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">最小路径和 Medium</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#零钱兑换-Medium"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">零钱兑换 Medium</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#下降路径最小和-Medium"><span class="post-toc-number">2.3.4.</span> <span class="post-toc-text">下降路径最小和 Medium</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#最低票价-Medium"><span class="post-toc-number">2.3.5.</span> <span class="post-toc-text">最低票价 Medium</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#只有两个键的键盘-Medium"><span class="post-toc-number">2.3.6.</span> <span class="post-toc-text">只有两个键的键盘 Medium</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#完全平方数-Medium"><span class="post-toc-number">2.3.7.</span> <span class="post-toc-text">完全平方数 Medium</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#最后一块石头的重量-II-Medium"><span class="post-toc-number">2.3.8.</span> <span class="post-toc-text">最后一块石头的重量 II Medium</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Distinct-Ways"><span class="post-toc-number">3.</span> <span class="post-toc-text">Distinct Ways</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Statement-1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Statement</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Approach-1"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Approach</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Similar-Problems-1"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">Similar Problems</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Merging-Intervals"><span class="post-toc-number">4.</span> <span class="post-toc-text">Merging Intervals</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Statement-2"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">Statement</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Approach-2"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">Approach</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Similar-Problems-2"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">Similar Problems</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DP-on-Strings"><span class="post-toc-number">5.</span> <span class="post-toc-text">DP on Strings</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Statement-3"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">Statement</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Approach-3"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">Approach</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Similar-Problems-3"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">Similar Problems</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Decision-Making"><span class="post-toc-number">6.</span> <span class="post-toc-text">Decision Making</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Statement-4"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">Statement</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Approach-4"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">Approach</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Similar-Problems-4"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">Similar Problems</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-dynamic-programming-patterns"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">论动态规划常见的5种模式</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-03-28 10:27:48" datetime="2020-03-28T02:27:48.000Z"  itemprop="datePublished">2020-03-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>动态规划（dynamic programming，简称DP）一直是算法面试中最难的话题之一。DP的本质在于如何完整的刻化状态而又使状态不包含冗余信息，这是比较难的一点；另外，不同的DP问题之间似乎并不能用统一的模式来表示，所以往往在做了一些DP题之后遇到新的DP问题还是束手无策（泛化能力差~）。</p>
+<p>本文copy自一篇LeetCode Discuss区大佬对DP模式的总结，原文将DP问题大致分成5种模式，并给出了相应解决方案的思路，感觉让我获益匪浅，因此文本也将原文提到的题目列表完整的实现了一遍。</p>
+<blockquote>
+<p>注：原文链接 <a href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns" target="_blank" rel="noopener">Dynamic Programming Patterns</a> 。另外，原文的表达挺好的，所以原文大部分的英文表达做了保留，emmm，因此文章看起来可能是中英混杂的。</p>
+</blockquote>
+<h2 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h2><p>原文作者对常见的DP问题分为5种模式（patterns）：</p>
+<ul>
+<li>Minimum (Maximum) Path to Reach a Target</li>
+<li>Distinct Ways</li>
+<li>Merging Intervals</li>
+<li>DP on Strings</li>
+<li>Decision Making</li>
+</ul>
+<p>下文分别对这5种模型进行讲解，说明一下，其中 “Statement” 代表 “此类模式问题的一般描述” ，”Approach” 代表 “此类问题的解题套路” ，”Similar Problems” 代表 “与此类模式相关的原题”，本文将给出相应的解答。</p>
+<h2 id="Minimum-Maximum-Path-to-Reach-a-Target"><a href="#Minimum-Maximum-Path-to-Reach-a-Target" class="headerlink" title="Minimum (Maximum) Path to Reach a Target"></a>Minimum (Maximum) Path to Reach a Target</h2><h3 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h3><p>Given a target find minimum (maximum) cost / path / sum to reach the target.</p>
+<h3 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h3><p>Choose minimum (maximum) path among all possible paths before the current state, then add value for the current state.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">routes[i] &#x3D; min(routes[i-1], routes[i-2], ... , routes[i-k]) + cost[i]</span><br></pre></td></tr></table></figure>
+
+<p>Generate optimal solutions for all values in the target and return the value for the target.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; ways.<span class="built_in">size</span>(); ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">           dp[i] = <span class="built_in">min</span>(dp[i], dp[i - ways[j]] + cost / path / sum) ;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Similar-Problems"><a href="#Similar-Problems" class="headerlink" title="Similar Problems"></a>Similar Problems</h3><p>列举如下：</p>
+<ul>
+<li><a href="https://leetcode-cn.com/problems/min-cost-climbing-stairs/" target="_blank" rel="noopener">746. 使用最小花费爬楼梯</a> <strong>Easy</strong></li>
+<li><a href="https://leetcode-cn.com/problems/minimum-path-sum/" target="_blank" rel="noopener">64. 最小路径和</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="noopener">322. 零钱兑换</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/minimum-falling-path-sum/" target="_blank" rel="noopener">931. 下降路径最小和</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/minimum-cost-for-tickets/" target="_blank" rel="noopener">983. 最低票价</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/2-keys-keyboard/" target="_blank" rel="noopener">650. 只有两个键的键盘</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/perfect-squares/" target="_blank" rel="noopener">279. 完全平方数</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/last-stone-weight-ii/" target="_blank" rel="noopener">1049. 最后一块石头的重量 II</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/triangle/" target="_blank" rel="noopener">120. 三角形最小路径和</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/ones-and-zeroes/" target="_blank" rel="noopener">474. 一和零</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/maximal-square/" target="_blank" rel="noopener">221. 最大正方形</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns" target="_blank" rel="noopener">1240. 铺瓷砖</a> <strong>Hard</strong></li>
+<li><a href="https://leetcode-cn.com/problems/dungeon-game/" target="_blank" rel="noopener">174. 地下城游戏</a> <strong>Hard</strong></li>
+<li><a href="https://leetcode-cn.com/problems/minimum-number-of-refueling-stops/" target="_blank" rel="noopener">871. 最低加油次数</a> <strong>Hard</strong></li>
+</ul>
+<h4 id="使用最小花费爬楼梯-Easy"><a href="#使用最小花费爬楼梯-Easy" class="headerlink" title="使用最小花费爬楼梯 Easy"></a>使用最小花费爬楼梯 Easy</h4><p><strong>题目</strong></p>
+<p>数组的每个索引做为一个阶梯，第 i 个阶梯对应着一个非负数的体力花费值 cost[i] (索引从0开始)。</p>
+<p>每当你爬上一个阶梯你都要花费对应的体力花费值，然后你可以选择继续爬一个阶梯或者爬两个阶梯。</p>
+<p>您需要找到达到楼层顶部的最低花费。在开始时，你可以选择从索引为 0 或 1 的元素作为初始阶梯。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: cost &#x3D; [10, 15, 20]</span><br><span class="line">输出: 15</span><br><span class="line">解释: 最低花费是从cost[1]开始，然后走两步即可到阶梯顶，一共花费15。</span><br><span class="line"></span><br><span class="line">输入: cost &#x3D; [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]</span><br><span class="line">输出: 6</span><br><span class="line">解释: 最低花费方式是从cost[0]开始，逐个经过那些1，跳过cost[3]，一共花费6。</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li>cost 的长度将会在 [2, 1000]。</li>
+<li>每一个 cost[i] 将会是一个Integer类型，范围为 [0, 999]。</li>
+</ul>
+<p><strong>分析</strong></p>
+<p>到达<code>dp[i]</code>位置的方式只有<code>dp[i-1]</code>和<code>dp[i-2]</code>，因此很容易得到状态转移方程：</p>
+<p><code>dp[i] = min(dp[i-1], dp[i-2]) + cost[i]</code></p>
+<p>另外在最后<code>i == n</code>的位置需要特殊处理，所以总体的状态转移方程如下：</p>
+<p><code>dp[i] = min(dp[i-1], dp[i-2]) + (i == n ? 0 : cost[i])</code></p>
+<p><strong>Java代码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minCostClimbingStairs</span><span class="params">(<span class="keyword">int</span>[] cost)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = cost.length;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">0</span>] = cost[<span class="number">0</span>];</span><br><span class="line">    dp[<span class="number">1</span>] = cost[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        dp[i] = Math.min(dp[i - <span class="number">1</span>], dp[i - <span class="number">2</span>]) + (i == n ? <span class="number">0</span> : cost[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="最小路径和-Medium"><a href="#最小路径和-Medium" class="headerlink" title="最小路径和 Medium"></a>最小路径和 Medium</h4><p><strong>题目</strong></p>
+<p>给定一个包含非负整数的 m x n 网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
+<p>说明：每次只能向下或者向右移动一步。</p>
+<p><strong>分析</strong></p>
+<p>直接得出状态转移方程<code>dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]</code>。</p>
+<p>从空间复杂度角度考虑，这题不需要开辟一个新的dp数组，直接把原数组当做dp数组用，即：</p>
+<p><code>grid[i][j] = min(grid[i-1][j], grid[i][j-1]) + grid[i][j]</code> 。</p>
+<p><strong>Java代码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid.length == <span class="number">0</span> || grid[<span class="number">0</span>].length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> m = grid.length, n = grid[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">        grid[i][<span class="number">0</span>] += grid[i - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">        grid[<span class="number">0</span>][j] += grid[<span class="number">0</span>][j - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">            grid[i][j] += Math.min(grid[i - <span class="number">1</span>][j], grid[i][j - <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> grid[m - <span class="number">1</span>][n - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="零钱兑换-Medium"><a href="#零钱兑换-Medium" class="headerlink" title="零钱兑换 Medium"></a>零钱兑换 Medium</h4><p><strong>题目</strong></p>
+<p>给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: coins &#x3D; [1, 2, 5], amount &#x3D; 11</span><br><span class="line">输出: 3</span><br><span class="line">解释: 11 &#x3D; 5 + 5 + 1</span><br><span class="line"></span><br><span class="line">输入: coins &#x3D; [2], amount &#x3D; 3</span><br><span class="line">输出: -1</span><br></pre></td></tr></table></figure>
+
+<p>说明: 你可以认为每种硬币的数量是无限的。</p>
+<p><strong>分析</strong></p>
+<p>状态转移方程：<code>dp[i] = min(dp[i-coin_1], dp[i-coin_2], ... , dp[i-coin_k]) + 1</code>，另外要考虑不存在的情况。</p>
+<p><strong>Java代码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="keyword">int</span>[] coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[amount + <span class="number">1</span>];</span><br><span class="line">    Arrays.fill(dp, amount + <span class="number">1</span>);</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= amount; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> coin : coins) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt;= coin) &#123;</span><br><span class="line">                dp[i] = Math.min(dp[i], dp[i - coin] + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (dp[amount] == amount + <span class="number">1</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> dp[amount];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="下降路径最小和-Medium"><a href="#下降路径最小和-Medium" class="headerlink" title="下降路径最小和 Medium"></a>下降路径最小和 Medium</h4><p><strong>题目</strong></p>
+<p>给定一个方形整数数组 A，我们想要得到通过 A 的下降路径的最小和。</p>
+<p>下降路径可以从第一行中的任何元素开始，并从每一行中选择一个元素。在下一行选择的元素和当前行所选元素最多相隔一列。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：[[1,2,3],[4,5,6],[7,8,9]]</span><br><span class="line">输出：12</span><br><span class="line">解释：</span><br><span class="line">可能的下降路径有：</span><br><span class="line">[1,4,7], [1,4,8], [1,5,7], [1,5,8], [1,5,9]</span><br><span class="line">[2,4,7], [2,4,8], [2,5,7], [2,5,8], [2,5,9], [2,6,8], [2,6,9]</span><br><span class="line">[3,5,7], [3,5,8], [3,5,9], [3,6,8], [3,6,9]</span><br><span class="line">其中和最小的下降路径是 [1,4,7]，所以答案是 12。</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析</strong></p>
+<p>状态转移方程：<code>dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i-1][j+1]) + A[i][j]</code>。</p>
+<p>同样，我们可以在原数组A上进行修改，但是这样就会产生边界问题，需要小心处理。</p>
+<blockquote>
+<p>注：如果是自己生成dp数组，我们可以进行套壳处理，这样就不用处理那么多的边界了，但是这里为了省空间还是在原数组上进行修改。</p>
+</blockquote>
+<p><strong>Java代码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minFallingPathSum</span><span class="params">(<span class="keyword">int</span>[][] A)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span> || A[<span class="number">0</span>].length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> m = A.length, n = A[<span class="number">0</span>].length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">int</span> min = A[i - <span class="number">1</span>][j];</span><br><span class="line">            <span class="keyword">if</span> (j &gt; <span class="number">0</span>) min = Math.min(min, A[i - <span class="number">1</span>][j - <span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">if</span> (j &lt; n - <span class="number">1</span>) min = Math.min(min, A[i - <span class="number">1</span>][j + <span class="number">1</span>]);</span><br><span class="line">            A[i][j] = min + A[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num : A[m - <span class="number">1</span>]) &#123;</span><br><span class="line">        res = Math.min(res, num);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="最低票价-Medium"><a href="#最低票价-Medium" class="headerlink" title="最低票价 Medium"></a>最低票价 Medium</h4><p><strong>题目</strong></p>
+<p><strong>示例</strong></p>
+<p><strong>分析</strong></p>
+<p><strong>Java代码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="只有两个键的键盘-Medium"><a href="#只有两个键的键盘-Medium" class="headerlink" title="只有两个键的键盘 Medium"></a>只有两个键的键盘 Medium</h4><p><strong>题目</strong></p>
+<p>最初在一个记事本上只有一个字符 ‘A’。你每次可以对这个记事本进行两种操作：</p>
+<ol>
+<li>Copy All (复制全部) : 你可以复制这个记事本中的所有字符(部分的复制是不允许的)。</li>
+<li>Paste (粘贴) : 你可以粘贴你上一次复制的字符。</li>
+</ol>
+<p>给定一个数字 n 。你需要使用最少的操作次数，在记事本中打印出恰好 n 个 ‘A’。输出能够打印出 n 个 ‘A’ 的最少操作次数。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: 3</span><br><span class="line">输出: 3</span><br><span class="line">解释:</span><br><span class="line">最初, 我们只有一个字符 &#39;A&#39;。</span><br><span class="line">第 1 步, 我们使用 Copy All 操作。</span><br><span class="line">第 2 步, 我们使用 Paste 操作来获得 &#39;AA&#39;。</span><br><span class="line">第 3 步, 我们使用 Paste 操作来获得 &#39;AAA&#39;。</span><br></pre></td></tr></table></figure>
+
+<p>说明: n 的取值范围是 [1, 1000] 。</p>
+<p><strong>分析</strong></p>
+<p>令C=Copy All，P=Paste。</p>
+<p>如果 n 是一个质数，那么只能通过 CPPP… 来获得，其中包括 1个C 与 n-1个P，一共 n 次操作。<br>如果 n 是 一个合数，例如 n=15=5*3，那么我们可以先得到一个5，然后再进行 CPP 获得 15；或者先得到一个 3，然后进行 CPPPP 获得 15。此时的状态转移方程是：</p>
+<p>$$dp[i] = min(dp[j_1]+(i/j_1), dp[j_2]+(i/j_2), … , dp[j_k]+(i/j_k))$$</p>
+<p>其中$j_1, j_2, … , j_k$均可以被$i$整除。</p>
+<p><strong>Java代码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSteps</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        dp[i] = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; j * j &lt;= i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % j == <span class="number">0</span>) &#123;</span><br><span class="line">                dp[i] = Math.min(dp[i], dp[j] + (i / j));</span><br><span class="line">                dp[i] = Math.min(dp[i], dp[i / j] + j);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其实上述代码并不是最优的，可以证明当$j$是合数$i$的最大因子时，<code>dp[i] = dp[j] + (i / j)</code>有最小结果，这部分不是重点，就不展开了，相关代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minSteps</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        dp[i] = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i / <span class="number">2</span>; j &gt; <span class="number">1</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % j == <span class="number">0</span>) &#123;</span><br><span class="line">                dp[i] = dp[j] + (i / j);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="完全平方数-Medium"><a href="#完全平方数-Medium" class="headerlink" title="完全平方数 Medium"></a>完全平方数 Medium</h4><p><strong>题目</strong></p>
+<p>给定正整数 n，找到若干个完全平方数（比如 1, 4, 9, 16, …）使得它们的和等于 n。你需要让组成和的完全平方数的个数最少。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: n &#x3D; 12</span><br><span class="line">输出: 3</span><br><span class="line">解释: 12 &#x3D; 4 + 4 + 4.</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析</strong></p>
+<p>其实就是一个Coin Change问题，此时的coins就是小于i的所有完全平方数。</p>
+<p>状态转移方程如下：<code>dp[i] = min(dp[i-1], dp[i-4], dp[i-9], ...) + 1</code></p>
+<p><strong>Java代码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numSquares</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    Arrays.fill(dp, Integer.MAX_VALUE);</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j * j &lt;= i; j++) &#123;</span><br><span class="line">            dp[i] = Math.min(dp[i], dp[i - j * j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="最后一块石头的重量-II-Medium"><a href="#最后一块石头的重量-II-Medium" class="headerlink" title="最后一块石头的重量 II Medium"></a>最后一块石头的重量 II Medium</h4><p><strong>题目</strong></p>
+<p>有一堆石头，每块石头的重量都是正整数。</p>
+<p>每一回合，从中选出任意两块石头，然后将它们一起粉碎。假设石头的重量分别为 x 和 y，且 x &lt;= y。那么粉碎的可能结果如下：</p>
+<ul>
+<li>如果 x == y，那么两块石头都会被完全粉碎；</li>
+<li>如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。</li>
+</ul>
+<p>最后，最多只会剩下一块石头。返回此石头最小的可能重量。如果没有石头剩下，就返回 0。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：[2,7,4,1,8,1]</span><br><span class="line">输出：1</span><br><span class="line">解释：</span><br><span class="line">组合 2 和 4，得到 2，所以数组转化为 [2,7,1,8,1]，</span><br><span class="line">组合 7 和 8，得到 1，所以数组转化为 [2,1,1,1]，</span><br><span class="line">组合 2 和 1，得到 1，所以数组转化为 [1,1,1]，</span><br><span class="line">组合 1 和 1，得到 0，所以数组转化为 [1]，这就是最优值。</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li>1 &lt;= stones.length &lt;= 30</li>
+<li>1 &lt;= stones[i] &lt;= 1000</li>
+</ul>
+<p><strong>分析</strong></p>
+<p>这个问题等价于将所有石头分成两组，并且这两组重量的差异值diff是最小的。</p>
+<p>(1) S1 + S2  = S<br>(2) S1 - S2 = diff</p>
+<p>==&gt; diff = S - 2 * S2  ==&gt; 最小化diff等价于最大化S2。</p>
+<p>因此我们需要最大化 S2，其中 S2 的范围在0至S/2之间。（其实就是0-1背包问题）</p>
+<p><strong>Java代码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="Distinct-Ways"><a href="#Distinct-Ways" class="headerlink" title="Distinct Ways"></a>Distinct Ways</h2><h3 id="Statement-1"><a href="#Statement-1" class="headerlink" title="Statement"></a>Statement</h3><p>Given a target find a number of distinct ways to reach the target.</p>
+<h3 id="Approach-1"><a href="#Approach-1" class="headerlink" title="Approach"></a>Approach</h3><p>Sum all possible ways to reach the current state.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">routes[i] &#x3D; routes[i-1] + routes[i-2], ... , + routes[i-k]</span><br></pre></td></tr></table></figure>
+
+<p>Generate sum for all values in the target and return the value for the target.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; ways.<span class="built_in">size</span>(); ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">           dp[i] += dp[i - ways[j]];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note: Some questions point out the number of repetitions, in that case, add one more loop to simulate every repetition.</p>
+</blockquote>
+<h3 id="Similar-Problems-1"><a href="#Similar-Problems-1" class="headerlink" title="Similar Problems"></a>Similar Problems</h3><p>列举如下：</p>
+<ul>
+<li><a href="https://leetcode-cn.com/problems/climbing-stairs/" target="_blank" rel="noopener">70. 爬楼梯</a> <strong>Easy</strong></li>
+<li><a href="https://leetcode-cn.com/problems/unique-paths/" target="_blank" rel="noopener">62. 不同路径</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/number-of-dice-rolls-with-target-sum/" target="_blank" rel="noopener">1155. 掷骰子的N种方法</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/knight-probability-in-chessboard/" target="_blank" rel="noopener">688. “马”在棋盘上的概率</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/target-sum/" target="_blank" rel="noopener">494. 目标和</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/combination-sum-iv/" target="_blank" rel="noopener">377. 组合总和 Ⅳ</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/knight-dialer/" target="_blank" rel="noopener">935. 骑士拨号器</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/dice-roll-simulation/" target="_blank" rel="noopener">1223. 掷骰子模拟</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/partition-equal-subset-sum/" target="_blank" rel="noopener">416. 分割等和子集</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/soup-servings/" target="_blank" rel="noopener">808. 分汤</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/domino-and-tromino-tiling/" target="_blank" rel="noopener">790. 多米诺和托米诺平铺</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/minimum-swaps-to-make-sequences-increasing/" target="_blank" rel="noopener">801. 使序列递增的最小交换次数</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence/" target="_blank" rel="noopener">673. 最长递增子序列的个数</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/unique-paths-ii/" target="_blank" rel="noopener">63. 不同路径 II</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/out-of-boundary-paths/" target="_blank" rel="noopener">576. 出界的路径数</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/number-of-ways-to-stay-in-the-same-place-after-some-steps/" target="_blank" rel="noopener">1269. 停在原地的方案数</a> <strong>Hard</strong></li>
+<li><a href="https://leetcode-cn.com/problems/count-vowels-permutation/" target="_blank" rel="noopener">1220. 统计元音字母序列的数目</a> <strong>Hard</strong></li>
+</ul>
+<h2 id="Merging-Intervals"><a href="#Merging-Intervals" class="headerlink" title="Merging Intervals"></a>Merging Intervals</h2><h3 id="Statement-2"><a href="#Statement-2" class="headerlink" title="Statement"></a>Statement</h3><p>Given a set of numbers find an optimal solution for a problem considering the current number and the best you can get from the left and right sides.</p>
+<h3 id="Approach-2"><a href="#Approach-2" class="headerlink" title="Approach"></a>Approach</h3><p>Find all optimal solutions for every interval and return the best possible answer.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// from i to j</span></span><br><span class="line">dp[i][j] = dp[i][k] + result[k] + dp[k+<span class="number">1</span>][j]</span><br></pre></td></tr></table></figure>
+
+<p>Get the best from the left and right sides and add a solution for the current position.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">1</span>; l&lt;n; l++) &#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;n-l; i++) &#123;</span><br><span class="line">       <span class="keyword">int</span> j = i+l;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> k = i; k&lt;j; k++) &#123;</span><br><span class="line">           dp[i][j] = <span class="built_in">max</span>(dp[i][j], dp[i][k] + result[k] + dp[k+<span class="number">1</span>][j]);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> dp[<span class="number">0</span>][n<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Similar-Problems-2"><a href="#Similar-Problems-2" class="headerlink" title="Similar Problems"></a>Similar Problems</h3><p>列举如下：</p>
+<ul>
+<li><a href="https://leetcode-cn.com/problems/minimum-cost-tree-from-leaf-values/" target="_blank" rel="noopener">1130. 叶值的最小代价生成树</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/unique-binary-search-trees/" target="_blank" rel="noopener">96. 不同的二叉搜索树</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/minimum-score-triangulation-of-polygon/" target="_blank" rel="noopener">1039. 多边形三角剖分的最低得分</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/guess-number-higher-or-lower-ii/" target="_blank" rel="noopener">375. 猜数字大小 II</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/remove-boxes/" target="_blank" rel="noopener">546. 移除盒子</a> <strong>Hard</strong></li>
+<li><a href="https://leetcode-cn.com/problems/minimum-cost-to-merge-stones/" target="_blank" rel="noopener">1000. 合并石头的最低成本</a> <strong>Hard</strong></li>
+<li><a href="https://leetcode-cn.com/problems/burst-balloons/" target="_blank" rel="noopener">312. 戳气球</a> <strong>Hard</strong></li>
+</ul>
+<h2 id="DP-on-Strings"><a href="#DP-on-Strings" class="headerlink" title="DP on Strings"></a>DP on Strings</h2><p>General problem statement for this pattern can vary but most of the time you are given two strings where lengths of those strings are not big.</p>
+<h3 id="Statement-3"><a href="#Statement-3" class="headerlink" title="Statement"></a>Statement</h3><p>Given two strings <code>s1</code> and <code>s2</code>, return <code>some result</code>.</p>
+<h3 id="Approach-3"><a href="#Approach-3" class="headerlink" title="Approach"></a>Approach</h3><p>Most of the problems on this pattern requires a solution that can be accepted in O(n^2) complexity.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// i - indexing string s1</span></span><br><span class="line"><span class="comment">// j - indexing string s2</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (s1[i<span class="number">-1</span>] == s2[j<span class="number">-1</span>]) &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>If you are given one string s the approach may little vary.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>; l &lt; n; ++l) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n-l; ++i) &#123;</span><br><span class="line">       <span class="keyword">int</span> j = i + l;</span><br><span class="line">       <span class="keyword">if</span> (s[i] == s[j]) &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Similar-Problems-3"><a href="#Similar-Problems-3" class="headerlink" title="Similar Problems"></a>Similar Problems</h3><p>列举如下：</p>
+<ul>
+<li><a href="https://leetcode-cn.com/problems/longest-common-subsequence/" target="_blank" rel="noopener">1143. 最长公共子序列</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/palindromic-substrings/" target="_blank" rel="noopener">647. 回文子串</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/longest-palindromic-subsequence/" target="_blank" rel="noopener">516. 最长回文子序列</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/shortest-common-supersequence/" target="_blank" rel="noopener">1092. 最短公共超序列</a> <strong>Hard</strong></li>
+<li><a href="https://leetcode-cn.com/problems/edit-distance/" target="_blank" rel="noopener">72. 编辑距离</a> <strong>Hard</strong></li>
+<li><a href="https://leetcode-cn.com/problems/distinct-subsequences/" target="_blank" rel="noopener">115. 不同的子序列</a> <strong>Hard</strong></li>
+<li><a href="https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/" target="_blank" rel="noopener">712. 两个字符串的最小ASCII删除和</a> <strong>Hard</strong></li>
+<li><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">5. 最长回文子串</a> <strong>Medium</strong></li>
+</ul>
+<h2 id="Decision-Making"><a href="#Decision-Making" class="headerlink" title="Decision Making"></a>Decision Making</h2><p>The general problem statement for this pattern is forgiven situation decide whether to use or not to use the current state. So, the problem requires you to make a decision at a current state.</p>
+<h3 id="Statement-4"><a href="#Statement-4" class="headerlink" title="Statement"></a>Statement</h3><p>Given a set of values find an answer with an option to choose or ignore the current value.</p>
+<h3 id="Approach-4"><a href="#Approach-4" class="headerlink" title="Approach"></a>Approach</h3><p>If you decide to choose the current value use the previous result where the value was ignored; vice-versa, if you decide to ignore the current value use previous result where value was used.</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// i - indexing a set of values</span></span><br><span class="line"><span class="comment">// j - options to ignore j values</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= k; ++j) &#123;</span><br><span class="line">       dp[i][j] = <span class="built_in">max</span>(&#123;dp[i][j], dp[i<span class="number">-1</span>][j] + arr[i], dp[i<span class="number">-1</span>][j<span class="number">-1</span>]&#125;);</span><br><span class="line">       dp[i][j<span class="number">-1</span>] = <span class="built_in">max</span>(&#123;dp[i][j<span class="number">-1</span>], dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + arr[i], arr[i]&#125;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Similar-Problems-4"><a href="#Similar-Problems-4" class="headerlink" title="Similar Problems"></a>Similar Problems</h3><p>列举如下：</p>
+<ul>
+<li><a href="https://leetcode-cn.com/problems/house-robber/" target="_blank" rel="noopener">198. 打家劫舍</a> <strong>Easy</strong></li>
+<li><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener">121. 买卖股票的最佳时机</a> <strong>Easy</strong></li>
+<li><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/" target="_blank" rel="noopener">714. 买卖股票的最佳时机含手续费</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/" target="_blank" rel="noopener">309. 最佳买卖股票时机含冷冻期</a> <strong>Medium</strong></li>
+<li><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/" target="_blank" rel="noopener">123. 买卖股票的最佳时机 III</a> <strong>Hard</strong></li>
+<li><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/" target="_blank" rel="noopener">188. 买卖股票的最佳时机 IV</a> <strong>Hard</strong></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-03-28T09:22:57.075Z" itemprop="dateUpdated">2020-03-28 17:22:57</time>
+</span><br>
+
+
+        
+        若有疑问或者本人有写的不对的地方, 欢迎留言或者直接邮箱反馈至yingzq0116@163.com, 非常感谢您的阅读~
+        
+    </div>
+    
+    <footer>
+        <a href="http://www.yingzq.com">
+            <img src="/img/avatar.jpg" alt="应子强">
+            应子强
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数据结构与算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/" rel="tag">算法设计技巧</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/&title=《论动态规划常见的5种模式》 — yingzq's Blog&pic=http://www.yingzq.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/&title=《论动态规划常见的5种模式》 — yingzq's Blog&source=交流NLP, 深度学习技术, 分享coding路上的风景" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《论动态规划常见的5种模式》 — yingzq's Blog&url=http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/&via=http://www.yingzq.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/03/25/conda-env-config-in-mac/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">在Mac中安装并配置conda环境（简约版）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'true' == 'true',
+            appId: "mGqkrgTscxf4JdcqkEHkFCfs-gzGzoHsz",
+            appKey: "PwU9oOfhNnWOKaMaOTqQpiNW",
+            avatar: "mm",
+            placeholder: "要不要说点什么？",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>应子强 &copy; 2019 - 2020</span>
+            <span>
+                
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备19041830号</a><br>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/&title=《论动态规划常见的5种模式》 — yingzq's Blog&pic=http://www.yingzq.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/&title=《论动态规划常见的5种模式》 — yingzq's Blog&source=交流NLP, 深度学习技术, 分享coding路上的风景" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《论动态规划常见的5种模式》 — yingzq's Blog&url=http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/&via=http://www.yingzq.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLklEQVR42u3awY6DMAxFUf7/p5ltpYrmPptWg3OzGlGG5IBkOY6PA4/zbbxev7rn9df3p31+wvGNIUOGjMcyzo+DTHC1rM4r4GuTIUPGPoz+4orTgxD8+X4ZMmTISBM4/rTa65MhQ4aMNAjyJJLfI0OGDBmdTWxnsn+0F5chQ8YDGbzq/vu/v3K+IUOGjEcxznDwdLCzZY1XJUOGjNEMHuB4WkYWXSvYLWaRIUPGUAYvePHrd7WI8eKdDBkyZjNIiKyF3VqJjdy/+CYyZMgYzeDTkJIcf0H8OLNVEZQhQ8ZjGWnCV2u8SAtwrTYLGTJkjGOQ8hZv/EpbMfiLCMKuDBkyxjFImYxfT8tn6Z2Xm1gZMmSMZvSLa3FLRDh4WJchQ8ZsBg9nnRaKNN2Mv4MMGTJGM3gY5UuvhV1eYpMhQ8ZuDN70UCuNpY1fvPHiMjWUIUPGUEat2aJfkusnozJkyNiHQcIiT/46hf70iFSGDBn7MGqbz04TWJpuLlYlQ4aMDRjp4zrpY61gt0glZciQsQHjrolJUCbhuHgwIEOGjA0Y5HG8lMY3orUWDRkyZOzAOMNRW+hdKePiO8iQIWMog49++8VvSngyZMiYyugE2eJxI97oBoFehgwZGzDSzS1H8qJbGvoXBwMyZMjYmJG2kfFjSL49PvgPMmTI2JhROxjgB59p8ipDhowdGGQTS5bIk8ggmJLtsQwZMkYz+L+lmVi8EQUztg41ZciQ8TzGH560IuBQ8wsgAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '快回来练习bug!';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'yingzq's Blog';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
