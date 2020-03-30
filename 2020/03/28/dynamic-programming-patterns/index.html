@@ -29,7 +29,7 @@
 <meta property="og:description" content="动态规划（dynamic programming，简称DP）一直是算法面试中最难的话题之一。DP的本质在于如何完整的刻化状态而又使状态不包含冗余信息，这是比较难的一点；另外，不同的DP问题之间似乎并不能用统一的模式来表示，所以往往在做了一些DP题之后遇到新的DP问题还是束手无策（泛化能力差~）。 本文copy自一篇LeetCode Discuss区大佬对DP模式的总结，原文将DP问题大致分成5种模">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-28T02:27:48.000Z">
-<meta property="article:modified_time" content="2020-03-29T12:52:38.421Z">
+<meta property="article:modified_time" content="2020-03-30T13:19:40.012Z">
 <meta property="article:author" content="应子强">
 <meta property="article:tag" content="数据结构与算法">
 <meta property="article:tag" content="算法设计技巧">
@@ -385,6 +385,9 @@
 <li>如果stones[i] &gt; j，<code>dp[j]不变</code></li>
 <li>如果stones[i] &lt;= j，<code>dp[j] = max(dp[j], dp[j-stones[i]] + stones[i])</code></li>
 </ul>
+<blockquote>
+<p>对于背包问题，在崔添翼大佬的 <a href="https://github.com/tianyicui/pack" target="_blank" rel="noopener">背包九讲</a> 中讲的非常棒，非常值得一看。为了方便可以在 <a href="http://image.yingzq.com/files/%E8%83%8C%E5%8C%85%E4%B9%9D%E8%AE%B2V2.pdf" target="_blank" rel="noopener">这里</a> 在线阅读。</p>
+</blockquote>
 <p><strong>Java代码</strong></p>
 <p>使用二维dp数组的代码：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lastStoneWeightII</span><span class="params">(<span class="keyword">int</span>[] stones)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> stone : stones) sum += stone;</span><br><span class="line">    <span class="keyword">int</span> n = sum / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[stones.length + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= stones.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (stones[i - <span class="number">1</span>] &gt; j) &#123;</span><br><span class="line">                dp[i][j] = dp[i - <span class="number">1</span>][j];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[i][j] = Math.max(dp[i - <span class="number">1</span>][j], dp[i - <span class="number">1</span>][j - stones[i - <span class="number">1</span>]] + stones[i - <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum - <span class="number">2</span> * dp[stones.length][n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -480,7 +483,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-03-29T12:52:38.421Z" itemprop="dateUpdated">2020-03-29 20:52:38</time>
+    最后更新时间：<time datetime="2020-03-30T13:19:40.012Z" itemprop="dateUpdated">2020-03-30 21:19:40</time>
 </span><br>
 
 
