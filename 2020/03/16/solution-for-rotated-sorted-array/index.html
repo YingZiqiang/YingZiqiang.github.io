@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://image.yingzq.com/img/20200219235223.png">
 <meta property="article:published_time" content="2020-03-16T12:39:25.000Z">
-<meta property="article:modified_time" content="2020-03-17T05:28:51.972Z">
+<meta property="article:modified_time" content="2020-04-11T02:33:40.812Z">
 <meta property="article:author" content="应子强">
 <meta property="article:tag" content="数据结构与算法">
 <meta property="article:tag" content="Java">
@@ -211,10 +211,10 @@
 <p>旋转排序数组的二分查找</p>
 </div>
 
-<p>这里有且仅有三种情景，同样来升序数组<code>[0,1,2,4,5,6,7]</code>来举例。</p>
-<p>第一种情景就是数组刚好不发生改变，可以看出经过<code>mid = lo + (hi - lo) / 2</code>的操作，数组会被<code>mid=4</code>分成了左右两个有序的数组，分别是<code>[0,1,2]</code>和<code>[5,6,7]</code>且两边范围不相交。</p>
-<p>第二种情景是数组变成了<code>[2,4,5,6,7,0,1]</code>，此时<code>mid=6</code>将数组分成了<code>[2,4,5]</code>和<code>[7,0,1]</code>，此时<strong>只有左半部分是有序的，右半部分整体上看无序且范围与左半部分不相交</strong>。</p>
-<p>第三种情景是数组变成了<code>[6,7,0,1,2,4,5]</code>，此时<code>mid=1</code>将数组分成了<code>6,7,0</code>和<code>[2,4,5]</code>，此时则<strong>只有右半部分是有序的，左半部分整体上看无序且范围与右半部分不相交</strong>。</p>
+<p>这里有且仅有三种情景，同样用升序数组<code>[0,1,2,4,5,6,7]</code>来举例。</p>
+<p>第一种情景就是数组刚好不发生改变，可以看出经过<code>mid = lo + (hi - lo) / 2</code>的操作，数组会被<code>nums[mid]=4</code>分成了左右两个有序的数组，分别是<code>[0,1,2]</code>和<code>[5,6,7]</code>且两边范围不相交。</p>
+<p>第二种情景是数组变成了<code>[2,4,5,6,7,0,1]</code>，此时<code>nums[mid]=6</code>将数组分成了<code>[2,4,5]</code>和<code>[7,0,1]</code>，此时<strong>只有左半部分是有序的，右半部分整体上看无序且范围与左半部分不相交</strong>。</p>
+<p>第三种情景是数组变成了<code>[6,7,0,1,2,4,5]</code>，此时<code>nums[mid]=1</code>将数组分成了<code>6,7,0</code>和<code>[2,4,5]</code>，此时则<strong>只有右半部分是有序的，左半部分整体上看无序且范围与右半部分不相交</strong>。</p>
 <p>通过这三种情景可以看出，<strong><code>旋转排序数组</code>进行二分查找的时候，至少有一边是有序的</strong>，并且我们可以通过<code>nums[lo], nums[mid], nums[hi]</code>的相对大小来判别当前是哪种情景，所以可以这样进行查找 target 的任务：</p>
 <ol>
 <li>如果<code>nums[mid] == target</code>，查找成功，直接返回。</li>
@@ -348,7 +348,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2020-03-17T05:28:51.972Z" itemprop="dateUpdated">2020-03-17 13:28:51</time>
+    最后更新时间：<time datetime="2020-04-11T02:33:40.812Z" itemprop="dateUpdated">2020-04-11 10:33:40</time>
 </span><br>
 
 
