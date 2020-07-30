@@ -5,9 +5,9 @@
   <subtitle>练习bug时长两年半的实习生</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.yingzq.com/"/>
+  <link href="https://www.yingzq.com/"/>
   <updated>2020-04-04T09:33:16.059Z</updated>
-  <id>http://www.yingzq.com/</id>
+  <id>https://www.yingzq.com/</id>
   
   <author>
     <name>应子强</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>论动态规划常见的5种模式</title>
-    <link href="http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/"/>
-    <id>http://www.yingzq.com/2020/03/28/dynamic-programming-patterns/</id>
+    <link href="https://www.yingzq.com/2020/03/28/dynamic-programming-patterns/"/>
+    <id>https://www.yingzq.com/2020/03/28/dynamic-programming-patterns/</id>
     <published>2020-03-28T02:27:48.000Z</published>
     <updated>2020-04-04T09:33:16.059Z</updated>
     
@@ -35,23 +35,23 @@
     </summary>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Java" scheme="http://www.yingzq.com/tags/Java/"/>
+      <category term="Java" scheme="https://www.yingzq.com/tags/Java/"/>
     
-      <category term="LeetCode" scheme="http://www.yingzq.com/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="https://www.yingzq.com/tags/LeetCode/"/>
     
-      <category term="算法设计技巧" scheme="http://www.yingzq.com/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/"/>
+      <category term="算法设计技巧" scheme="https://www.yingzq.com/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/"/>
     
   </entry>
   
   <entry>
     <title>在Mac中安装并配置conda环境（简约版）</title>
-    <link href="http://www.yingzq.com/2020/03/25/conda-env-config-in-mac/"/>
-    <id>http://www.yingzq.com/2020/03/25/conda-env-config-in-mac/</id>
+    <link href="https://www.yingzq.com/2020/03/25/conda-env-config-in-mac/"/>
+    <id>https://www.yingzq.com/2020/03/25/conda-env-config-in-mac/</id>
     <published>2020-03-25T04:35:32.000Z</published>
     <updated>2020-03-30T10:49:10.283Z</updated>
     
@@ -67,19 +67,19 @@
     </summary>
     
     
-      <category term="环境安装与配置" scheme="http://www.yingzq.com/categories/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+      <category term="环境安装与配置" scheme="https://www.yingzq.com/categories/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
     
     
-      <category term="conda" scheme="http://www.yingzq.com/tags/conda/"/>
+      <category term="conda" scheme="https://www.yingzq.com/tags/conda/"/>
     
-      <category term="环境安装与配置" scheme="http://www.yingzq.com/tags/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+      <category term="环境安装与配置" scheme="https://www.yingzq.com/tags/%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
   <entry>
     <title>对 “旋转排序数组” 相关问题的解决方法</title>
-    <link href="http://www.yingzq.com/2020/03/16/solution-for-rotated-sorted-array/"/>
-    <id>http://www.yingzq.com/2020/03/16/solution-for-rotated-sorted-array/</id>
+    <link href="https://www.yingzq.com/2020/03/16/solution-for-rotated-sorted-array/"/>
+    <id>https://www.yingzq.com/2020/03/16/solution-for-rotated-sorted-array/</id>
     <published>2020-03-16T12:39:25.000Z</published>
     <updated>2020-04-11T02:33:40.812Z</updated>
     
@@ -93,21 +93,21 @@
     </summary>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Java" scheme="http://www.yingzq.com/tags/Java/"/>
+      <category term="Java" scheme="https://www.yingzq.com/tags/Java/"/>
     
-      <category term="LeetCode" scheme="http://www.yingzq.com/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="https://www.yingzq.com/tags/LeetCode/"/>
     
   </entry>
   
   <entry>
     <title>一种处理回溯问题的通用方法</title>
-    <link href="http://www.yingzq.com/2020/03/14/a-general-approach-to-backtracking-questions/"/>
-    <id>http://www.yingzq.com/2020/03/14/a-general-approach-to-backtracking-questions/</id>
+    <link href="https://www.yingzq.com/2020/03/14/a-general-approach-to-backtracking-questions/"/>
+    <id>https://www.yingzq.com/2020/03/14/a-general-approach-to-backtracking-questions/</id>
     <published>2020-03-14T08:51:58.000Z</published>
     <updated>2020-04-12T06:45:51.359Z</updated>
     
@@ -120,21 +120,21 @@
     </summary>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Java" scheme="http://www.yingzq.com/tags/Java/"/>
+      <category term="Java" scheme="https://www.yingzq.com/tags/Java/"/>
     
-      <category term="LeetCode" scheme="http://www.yingzq.com/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="https://www.yingzq.com/tags/LeetCode/"/>
     
   </entry>
   
   <entry>
     <title>《剑指offer第二版》阅读笔记（三）</title>
-    <link href="http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/"/>
-    <id>http://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/</id>
+    <link href="https://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/"/>
+    <id>https://www.yingzq.com/2020/02/21/sword-finger-offer-notes-part-three/</id>
     <published>2020-02-21T05:02:22.000Z</published>
     <updated>2020-03-23T09:19:53.784Z</updated>
     
@@ -147,21 +147,21 @@
     </summary>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Java" scheme="http://www.yingzq.com/tags/Java/"/>
+      <category term="Java" scheme="https://www.yingzq.com/tags/Java/"/>
     
-      <category term="阅读笔记" scheme="http://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+      <category term="阅读笔记" scheme="https://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>《剑指offer第二版》阅读笔记（二）</title>
-    <link href="http://www.yingzq.com/2020/02/20/sword-finger-offer-notes-part-two/"/>
-    <id>http://www.yingzq.com/2020/02/20/sword-finger-offer-notes-part-two/</id>
+    <link href="https://www.yingzq.com/2020/02/20/sword-finger-offer-notes-part-two/"/>
+    <id>https://www.yingzq.com/2020/02/20/sword-finger-offer-notes-part-two/</id>
     <published>2020-02-20T12:06:52.000Z</published>
     <updated>2020-03-29T05:29:45.396Z</updated>
     
@@ -174,21 +174,21 @@
     </summary>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Java" scheme="http://www.yingzq.com/tags/Java/"/>
+      <category term="Java" scheme="https://www.yingzq.com/tags/Java/"/>
     
-      <category term="阅读笔记" scheme="http://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+      <category term="阅读笔记" scheme="https://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>《剑指offer第二版》阅读笔记（一）</title>
-    <link href="http://www.yingzq.com/2020/02/19/sword-finger-offer-notes/"/>
-    <id>http://www.yingzq.com/2020/02/19/sword-finger-offer-notes/</id>
+    <link href="https://www.yingzq.com/2020/02/19/sword-finger-offer-notes/"/>
+    <id>https://www.yingzq.com/2020/02/19/sword-finger-offer-notes/</id>
     <published>2020-02-19T07:10:52.000Z</published>
     <updated>2020-04-14T03:55:59.815Z</updated>
     
@@ -201,21 +201,21 @@
     </summary>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Java" scheme="http://www.yingzq.com/tags/Java/"/>
+      <category term="Java" scheme="https://www.yingzq.com/tags/Java/"/>
     
-      <category term="阅读笔记" scheme="http://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+      <category term="阅读笔记" scheme="https://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>常见排序算法（归纳分析及java实现）</title>
-    <link href="http://www.yingzq.com/2019/12/25/common-sorting-algorithms/"/>
-    <id>http://www.yingzq.com/2019/12/25/common-sorting-algorithms/</id>
+    <link href="https://www.yingzq.com/2019/12/25/common-sorting-algorithms/"/>
+    <id>https://www.yingzq.com/2019/12/25/common-sorting-algorithms/</id>
     <published>2019-12-25T11:55:56.000Z</published>
     <updated>2020-02-19T17:41:15.969Z</updated>
     
@@ -228,19 +228,19 @@
     </summary>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Java" scheme="http://www.yingzq.com/tags/Java/"/>
+      <category term="Java" scheme="https://www.yingzq.com/tags/Java/"/>
     
   </entry>
   
   <entry>
     <title>Python3.7.6官方教程阅读笔记</title>
-    <link href="http://www.yingzq.com/2019/11/19/official-python3-7-6-tutorial-notes/"/>
-    <id>http://www.yingzq.com/2019/11/19/official-python3-7-6-tutorial-notes/</id>
+    <link href="https://www.yingzq.com/2019/11/19/official-python3-7-6-tutorial-notes/"/>
+    <id>https://www.yingzq.com/2019/11/19/official-python3-7-6-tutorial-notes/</id>
     <published>2019-11-19T09:23:40.000Z</published>
     <updated>2020-02-27T07:06:24.177Z</updated>
     
@@ -253,19 +253,19 @@
     </summary>
     
     
-      <category term="Python" scheme="http://www.yingzq.com/categories/Python/"/>
+      <category term="Python" scheme="https://www.yingzq.com/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://www.yingzq.com/tags/Python/"/>
+      <category term="Python" scheme="https://www.yingzq.com/tags/Python/"/>
     
-      <category term="阅读笔记" scheme="http://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+      <category term="阅读笔记" scheme="https://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>Transformer代码实现</title>
-    <link href="http://www.yingzq.com/2019/11/18/the-annotated-transformer/"/>
-    <id>http://www.yingzq.com/2019/11/18/the-annotated-transformer/</id>
+    <link href="https://www.yingzq.com/2019/11/18/the-annotated-transformer/"/>
+    <id>https://www.yingzq.com/2019/11/18/the-annotated-transformer/</id>
     <published>2019-11-18T07:22:27.000Z</published>
     <updated>2020-02-19T17:43:10.648Z</updated>
     
@@ -278,25 +278,25 @@
     </summary>
     
     
-      <category term="NLP" scheme="http://www.yingzq.com/categories/NLP/"/>
+      <category term="NLP" scheme="https://www.yingzq.com/categories/NLP/"/>
     
     
-      <category term="NLP" scheme="http://www.yingzq.com/tags/NLP/"/>
+      <category term="NLP" scheme="https://www.yingzq.com/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
+      <category term="Deep Learning" scheme="https://www.yingzq.com/tags/Deep-Learning/"/>
     
-      <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
+      <category term="Transformer" scheme="https://www.yingzq.com/tags/Transformer/"/>
     
-      <category term="BERT" scheme="http://www.yingzq.com/tags/BERT/"/>
+      <category term="BERT" scheme="https://www.yingzq.com/tags/BERT/"/>
     
-      <category term="PyTorch" scheme="http://www.yingzq.com/tags/PyTorch/"/>
+      <category term="PyTorch" scheme="https://www.yingzq.com/tags/PyTorch/"/>
     
   </entry>
   
   <entry>
     <title>Transformer图解</title>
-    <link href="http://www.yingzq.com/2019/10/30/the-illustrated-transformer/"/>
-    <id>http://www.yingzq.com/2019/10/30/the-illustrated-transformer/</id>
+    <link href="https://www.yingzq.com/2019/10/30/the-illustrated-transformer/"/>
+    <id>https://www.yingzq.com/2019/10/30/the-illustrated-transformer/</id>
     <published>2019-10-29T16:23:45.000Z</published>
     <updated>2020-03-03T05:27:13.700Z</updated>
     
@@ -310,23 +310,23 @@
     </summary>
     
     
-      <category term="NLP" scheme="http://www.yingzq.com/categories/NLP/"/>
+      <category term="NLP" scheme="https://www.yingzq.com/categories/NLP/"/>
     
     
-      <category term="NLP" scheme="http://www.yingzq.com/tags/NLP/"/>
+      <category term="NLP" scheme="https://www.yingzq.com/tags/NLP/"/>
     
-      <category term="Deep Learning" scheme="http://www.yingzq.com/tags/Deep-Learning/"/>
+      <category term="Deep Learning" scheme="https://www.yingzq.com/tags/Deep-Learning/"/>
     
-      <category term="Transformer" scheme="http://www.yingzq.com/tags/Transformer/"/>
+      <category term="Transformer" scheme="https://www.yingzq.com/tags/Transformer/"/>
     
-      <category term="BERT" scheme="http://www.yingzq.com/tags/BERT/"/>
+      <category term="BERT" scheme="https://www.yingzq.com/tags/BERT/"/>
     
   </entry>
   
   <entry>
     <title>贪心算法</title>
-    <link href="http://www.yingzq.com/2019/10/22/greedy-algorithm/"/>
-    <id>http://www.yingzq.com/2019/10/22/greedy-algorithm/</id>
+    <link href="https://www.yingzq.com/2019/10/22/greedy-algorithm/"/>
+    <id>https://www.yingzq.com/2019/10/22/greedy-algorithm/</id>
     <published>2019-10-22T14:04:30.000Z</published>
     <updated>2020-04-24T03:25:17.474Z</updated>
     
@@ -342,23 +342,23 @@
     </summary>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="数据结构与算法" scheme="http://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://www.yingzq.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
-      <category term="Java" scheme="http://www.yingzq.com/tags/Java/"/>
+      <category term="Java" scheme="https://www.yingzq.com/tags/Java/"/>
     
-      <category term="LeetCode" scheme="http://www.yingzq.com/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="https://www.yingzq.com/tags/LeetCode/"/>
     
-      <category term="算法设计技巧" scheme="http://www.yingzq.com/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/"/>
+      <category term="算法设计技巧" scheme="https://www.yingzq.com/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E6%8A%80%E5%B7%A7/"/>
     
   </entry>
   
   <entry>
     <title>Git的杀手锏：分支模型（下）</title>
-    <link href="http://www.yingzq.com/2019/10/16/git-branching-part-two/"/>
-    <id>http://www.yingzq.com/2019/10/16/git-branching-part-two/</id>
+    <link href="https://www.yingzq.com/2019/10/16/git-branching-part-two/"/>
+    <id>https://www.yingzq.com/2019/10/16/git-branching-part-two/</id>
     <published>2019-10-16T05:12:25.000Z</published>
     <updated>2020-02-19T17:40:19.606Z</updated>
     
@@ -371,17 +371,17 @@
     </summary>
     
     
-      <category term="Git" scheme="http://www.yingzq.com/categories/Git/"/>
+      <category term="Git" scheme="https://www.yingzq.com/categories/Git/"/>
     
     
-      <category term="Git" scheme="http://www.yingzq.com/tags/Git/"/>
+      <category term="Git" scheme="https://www.yingzq.com/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>Git的杀手锏：分支模型（上）</title>
-    <link href="http://www.yingzq.com/2019/10/13/git-branching/"/>
-    <id>http://www.yingzq.com/2019/10/13/git-branching/</id>
+    <link href="https://www.yingzq.com/2019/10/13/git-branching/"/>
+    <id>https://www.yingzq.com/2019/10/13/git-branching/</id>
     <published>2019-10-13T04:11:55.000Z</published>
     <updated>2020-02-19T17:40:13.456Z</updated>
     
@@ -394,17 +394,17 @@
     </summary>
     
     
-      <category term="Git" scheme="http://www.yingzq.com/categories/Git/"/>
+      <category term="Git" scheme="https://www.yingzq.com/categories/Git/"/>
     
     
-      <category term="Git" scheme="http://www.yingzq.com/tags/Git/"/>
+      <category term="Git" scheme="https://www.yingzq.com/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>请务必掌握的Git基础</title>
-    <link href="http://www.yingzq.com/2019/10/01/git-basics/"/>
-    <id>http://www.yingzq.com/2019/10/01/git-basics/</id>
+    <link href="https://www.yingzq.com/2019/10/01/git-basics/"/>
+    <id>https://www.yingzq.com/2019/10/01/git-basics/</id>
     <published>2019-10-01T05:03:38.000Z</published>
     <updated>2020-02-19T17:40:18.378Z</updated>
     
@@ -417,17 +417,17 @@
     </summary>
     
     
-      <category term="Git" scheme="http://www.yingzq.com/categories/Git/"/>
+      <category term="Git" scheme="https://www.yingzq.com/categories/Git/"/>
     
     
-      <category term="Git" scheme="http://www.yingzq.com/tags/Git/"/>
+      <category term="Git" scheme="https://www.yingzq.com/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>What is Git</title>
-    <link href="http://www.yingzq.com/2019/09/18/what-is-git/"/>
-    <id>http://www.yingzq.com/2019/09/18/what-is-git/</id>
+    <link href="https://www.yingzq.com/2019/09/18/what-is-git/"/>
+    <id>https://www.yingzq.com/2019/09/18/what-is-git/</id>
     <published>2019-09-18T14:19:30.000Z</published>
     <updated>2020-02-19T17:39:44.802Z</updated>
     
@@ -440,10 +440,10 @@
     </summary>
     
     
-      <category term="Git" scheme="http://www.yingzq.com/categories/Git/"/>
+      <category term="Git" scheme="https://www.yingzq.com/categories/Git/"/>
     
     
-      <category term="Git" scheme="http://www.yingzq.com/tags/Git/"/>
+      <category term="Git" scheme="https://www.yingzq.com/tags/Git/"/>
     
   </entry>
   
