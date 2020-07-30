@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.yingzq.com/"/>
-  <updated>2020-07-30T16:51:39.427Z</updated>
+  <updated>2020-04-04T09:33:16.059Z</updated>
   <id>https://www.yingzq.com/</id>
   
   <author>
@@ -15,21 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>test</title>
-    <link href="https://www.yingzq.com/2020/07/31/test/"/>
-    <id>https://www.yingzq.com/2020/07/31/test/</id>
-    <published>2020-07-30T16:51:39.000Z</published>
-    <updated>2020-07-30T16:51:39.427Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>论动态规划常见的5种模式</title>
