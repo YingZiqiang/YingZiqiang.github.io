@@ -283,9 +283,9 @@
       <category term="Python" scheme="https://www.yingzq.com/categories/Python/"/>
     
     
-      <category term="阅读笔记" scheme="https://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="Python" scheme="https://www.yingzq.com/tags/Python/"/>
+    
+      <category term="阅读笔记" scheme="https://www.yingzq.com/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -310,13 +310,13 @@
     
       <category term="NLP" scheme="https://www.yingzq.com/tags/NLP/"/>
     
-      <category term="Transformer" scheme="https://www.yingzq.com/tags/Transformer/"/>
-    
       <category term="Deep Learning" scheme="https://www.yingzq.com/tags/Deep-Learning/"/>
     
-      <category term="PyTorch" scheme="https://www.yingzq.com/tags/PyTorch/"/>
+      <category term="Transformer" scheme="https://www.yingzq.com/tags/Transformer/"/>
     
       <category term="BERT" scheme="https://www.yingzq.com/tags/BERT/"/>
+    
+      <category term="PyTorch" scheme="https://www.yingzq.com/tags/PyTorch/"/>
     
   </entry>
   
@@ -342,9 +342,9 @@
     
       <category term="NLP" scheme="https://www.yingzq.com/tags/NLP/"/>
     
-      <category term="Transformer" scheme="https://www.yingzq.com/tags/Transformer/"/>
-    
       <category term="Deep Learning" scheme="https://www.yingzq.com/tags/Deep-Learning/"/>
+    
+      <category term="Transformer" scheme="https://www.yingzq.com/tags/Transformer/"/>
     
       <category term="BERT" scheme="https://www.yingzq.com/tags/BERT/"/>
     
